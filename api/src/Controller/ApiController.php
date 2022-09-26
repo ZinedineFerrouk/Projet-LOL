@@ -21,7 +21,7 @@ class ApiController extends AbstractController
     public function getAccountById(): JsonResponse
     {
         $response = new Response();
-        $response->headers->set('X-Riot-Token', 'RGAPI-cd0dfa1f-dddb-473f-8122-53f34da3accb');
+        $response->headers->set('X-Riot-Token', 'RGAPI-4f87d86f-2ab4-4e3a-9c98-fd74fe1b78a9');
         $response->headers->set('Origin', 'https://developer.riotgames.com');
         $response = $this->httpClient->request('GET', 'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/bos688JIFj4BC75UaqiNKwr2ybYT3scGuL2A9EeIYktT7gq1HQUbQ0FiUeHRBNxYliT5QIiyxze5iA/ids');
         $responseData = json_decode($response->getContent(), true);
