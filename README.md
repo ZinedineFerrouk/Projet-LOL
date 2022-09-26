@@ -6,6 +6,9 @@ git clone https://github.com/ZinedineFerrouk/Projet-LOL.git
 ## Récupérer les branches
 git fetch -v --all
 
+## Installer les dépendances symfony
+composer install
+
 ## Lancer l'api Symfony 
 cd votre_répertoire_back
 symfony server:start
