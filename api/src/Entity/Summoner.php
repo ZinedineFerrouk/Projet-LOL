@@ -16,9 +16,6 @@ class Summoner
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'summoner', cascade: ['persist', 'remove'])]
-    private ?Account $account = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $puuid = null;
 
@@ -28,14 +25,14 @@ class Summoner
     #[ORM\Column(nullable: true)]
     private ?int $profileIconId = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $revision_date = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $sumonnerLevel = null;
 
     #[ORM\ManyToMany(targetEntity: Matchs::class, mappedBy: 'summoner')]
     private Collection $matchs;
+
+    #[ORM\Column(length: 255)]
+    private ?string $summoner_id = null;
 
     public function __construct()
     {
@@ -45,18 +42,6 @@ class Summoner
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAccount(): ?Account
-    {
-        return $this->account;
-    }
-
-    public function setAccount(?Account $account): self
-    {
-        $this->account = $account;
-
-        return $this;
     }
 
     public function getPuuid(): ?string
@@ -91,18 +76,6 @@ class Summoner
     public function setProfileIconId(?int $profileIconId): self
     {
         $this->profileIconId = $profileIconId;
-
-        return $this;
-    }
-
-    public function getRevisionDate(): ?\DateTimeInterface
-    {
-        return $this->revision_date;
-    }
-
-    public function setRevisionDate(?\DateTimeInterface $revision_date): self
-    {
-        $this->revision_date = $revision_date;
 
         return $this;
     }
@@ -142,6 +115,18 @@ class Summoner
         if ($this->matchs->removeElement($match)) {
             $match->removeSummoner($this);
         }
+
+        return $this;
+    }
+
+    public function getSummonerId(): ?string
+    {
+        return $this->summoner_id;
+    }
+
+    public function setSummonerId(string $summoner_id): self
+    {
+        $this->summoner_id = $summoner_id;
 
         return $this;
     }

@@ -21,4 +21,5 @@ class ApiService
 
         return new JsonResponse(json_decode($result));
     }
+
 }

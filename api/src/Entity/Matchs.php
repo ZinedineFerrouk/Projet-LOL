@@ -21,6 +21,9 @@ class Matchs
     #[ORM\ManyToMany(targetEntity: Summoner::class, inversedBy: 'matchs')]
     private Collection $summoner;
 
+    #[ORM\Column(length: 255)]
+    private ?string $match_id = null;
+
     public function __construct()
     {
         $this->summoner = new ArrayCollection();
@@ -63,6 +66,18 @@ class Matchs
     public function removeSummoner(Summoner $summoner): self
     {
         $this->summoner->removeElement($summoner);
+
+        return $this;
+    }
+
+    public function getMatchId(): ?string
+    {
+        return $this->match_id;
+    }
+
+    public function setMatchId(string $match_id): self
+    {
+        $this->match_id = $match_id;
 
         return $this;
     }
