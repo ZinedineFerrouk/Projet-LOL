@@ -34,6 +34,9 @@ class Summoner
     #[ORM\Column(length: 255)]
     private ?string $summoner_id = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $region = null;
+
     public function __construct()
     {
         $this->matchs = new ArrayCollection();
@@ -127,6 +130,18 @@ class Summoner
     public function setSummonerId(string $summoner_id): self
     {
         $this->summoner_id = $summoner_id;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?string $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }
