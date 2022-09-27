@@ -13,9 +13,6 @@ class Items
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private array $info = [];
-
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -23,10 +20,10 @@ class Items
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $plainText = null;
+    private ?string $icon = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $icon = null;
+    private ?string $item_id = null;
 
     public function getId(): ?int
     {
@@ -69,18 +66,6 @@ class Items
         return $this;
     }
 
-    public function getPlainText(): ?string
-    {
-        return $this->plainText;
-    }
-
-    public function setPlainText(string $plainText): self
-    {
-        $this->plainText = $plainText;
-
-        return $this;
-    }
-
     public function getIcon(): ?string
     {
         return $this->icon;
@@ -89,6 +74,18 @@ class Items
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getItemId(): ?string
+    {
+        return $this->item_id;
+    }
+
+    public function setItemId(string $item_id): self
+    {
+        $this->item_id = $item_id;
 
         return $this;
     }
