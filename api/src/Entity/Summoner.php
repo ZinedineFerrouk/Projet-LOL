@@ -34,12 +34,12 @@ class Summoner
     #[ORM\Column(nullable: true)]
     private ?int $sumonnerLevel = null;
 
-    #[ORM\ManyToMany(targetEntity: Mach::class, mappedBy: 'summoner')]
-    private Collection $maches;
+    #[ORM\ManyToMany(targetEntity: Matchs::class, mappedBy: 'summoner')]
+    private Collection $matchs;
 
     public function __construct()
     {
-        $this->maches = new ArrayCollection();
+        $this->matchs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -120,27 +120,27 @@ class Summoner
     }
 
     /**
-     * @return Collection<int, Mach>
+     * @return Collection<int, Matchs>
      */
-    public function getMaches(): Collection
+    public function getMatchs(): Collection
     {
-        return $this->maches;
+        return $this->matchs;
     }
 
-    public function addMach(Mach $mach): self
+    public function addMatch(Matchs $match): self
     {
-        if (!$this->maches->contains($mach)) {
-            $this->maches->add($mach);
-            $mach->addSummoner($this);
+        if (!$this->matchs->contains($match)) {
+            $this->matchs->add($match);
+            $match->addSummoner($this);
         }
 
         return $this;
     }
 
-    public function removeMach(Mach $mach): self
+    public function removeMatch(Matchs $match): self
     {
-        if ($this->maches->removeElement($mach)) {
-            $mach->removeSummoner($this);
+        if ($this->matchs->removeElement($match)) {
+            $match->removeSummoner($this);
         }
 
         return $this;

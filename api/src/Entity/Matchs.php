@@ -2,26 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\MachRepository;
+use App\Repository\MatchsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MachRepository::class)]
-class Mach
+#[ORM\Entity(repositoryClass: MatchsRepository::class)]
+class Matchs
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $match_id = null;
+    #[ORM\Column]
+    private array $data = [];
 
-    #[ORM\Column(nullable: true)]
-    private array $datas = [];
-
-    #[ORM\ManyToMany(targetEntity: Summoner::class, inversedBy: 'maches')]
+    #[ORM\ManyToMany(targetEntity: Summoner::class, inversedBy: 'matchs')]
     private Collection $summoner;
 
     public function __construct()
@@ -34,26 +31,14 @@ class Mach
         return $this->id;
     }
 
-    public function getMatchId(): ?string
+    public function getData(): array
     {
-        return $this->match_id;
+        return $this->data;
     }
 
-    public function setMatchId(?string $match_id): self
+    public function setData(array $data): self
     {
-        $this->match_id = $match_id;
-
-        return $this;
-    }
-
-    public function getDatas(): array
-    {
-        return $this->datas;
-    }
-
-    public function setDatas(?array $datas): self
-    {
-        $this->datas = $datas;
+        $this->data = $data;
 
         return $this;
     }

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Mach;
+use App\Entity\Matchs;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Mach>
+ * @extends ServiceEntityRepository<Matchs>
  *
- * @method Mach|null find($id, $lockMode = null, $lockVersion = null)
- * @method Mach|null findOneBy(array $criteria, array $orderBy = null)
- * @method Mach[]    findAll()
- * @method Mach[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Matchs|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Matchs|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Matchs[]    findAll()
+ * @method Matchs[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MachRepository extends ServiceEntityRepository
+class MatchsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Mach::class);
+        parent::__construct($registry, Matchs::class);
     }
 
-    public function save(Mach $entity, bool $flush = false): void
+    public function save(Matchs $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MachRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Mach $entity, bool $flush = false): void
+    public function remove(Matchs $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MachRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Mach[] Returns an array of Mach objects
+//     * @return Matchs[] Returns an array of Matchs objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class MachRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Mach
+//    public function findOneBySomeField($value): ?Matchs
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')
