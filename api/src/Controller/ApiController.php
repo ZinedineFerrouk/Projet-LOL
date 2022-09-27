@@ -47,7 +47,7 @@ class ApiController extends AbstractController
         $summoner->setSumonnerLevel($json['summonerLevel']);
 
         // Set la region du summoner
-        $response = $this->apiService->callToRiotApi('https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/'.$puuid);
+        $response = $this->apiService->callToApi('https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/'.$puuid);
         $account = json_decode($response->getContent(), true);
         $tagLine = $account['tagLine'];
         $summoner->setRegion($tagLine);
