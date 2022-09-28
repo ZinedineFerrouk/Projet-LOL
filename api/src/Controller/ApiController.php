@@ -20,22 +20,20 @@ class ApiController extends AbstractController
     private $em;
     private $summonerRepository;
     private $matchsRepository;
-    private $api_key;
 
-    public function __construct(ApiService $apiService, ManagerRegistry $em, SummonerRepository $summonerRepository, MatchsRepository $matchsRepository, $api_key = 'RGAPI-b0e55021-0587-4f4a-91a0-2772a031cddd')
+    public function __construct(ApiService $apiService, ManagerRegistry $em, SummonerRepository $summonerRepository, MatchsRepository $matchsRepository)
     {
         $this->apiService = $apiService;
         $this->em = $em;
         $this->summonerRepository = $summonerRepository;
         $this->matchsRepository = $matchsRepository;
-        $this->api_key = $api_key;
     }
 
     #[Route('/get-all-data', name: 'get-all-data')]
     public function getAllDataFromRiot()
     {
         // Récupère toutes les infos d'un invocateur par NOM
-        $response = $this->apiService->callToApi('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/SPKTRA', array('X-Riot-Token: ' . $this->api_key));
+        $response = $this->apiService->callToApi('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/SPKTRA', array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
         $json = json_decode($response->getContent(), true);
         $puuid = $json['puuid'];
 
@@ -47,7 +45,7 @@ class ApiController extends AbstractController
         $summoner->setSumonnerLevel($json['summonerLevel']);
 
         // Set la region du summoner
-        $response = $this->apiService->callToApi('https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/'.$puuid);
+        $response = $this->apiService->callToApi('https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/' . $puuid, array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
         $account = json_decode($response->getContent(), true);
         $tagLine = $account['tagLine'];
         $summoner->setRegion($tagLine);
@@ -55,9 +53,8 @@ class ApiController extends AbstractController
         $this->em->getManager()->persist($summoner);
         $this->em->getManager()->flush();
 
-
         // Récupère les matches par le PUUID
-        $response = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/' . $json['puuid'] . '/ids', array('X-Riot-Token: ' . $this->api_key));
+        $response = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/' . $json['puuid'] . '/ids', array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
         $json = json_decode($response->getContent(), true);
         $summoner = $this->summonerRepository->findOneBy(['puuid' => $puuid]);
 
@@ -75,11 +72,10 @@ class ApiController extends AbstractController
 
         foreach ($json as $value) {
             // dd($value);
-            $response = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/' . $value . '/timeline', array('X-Riot-Token: ' . $this->api_key));
+            $response = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/' . $value . '/timeline', array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
             $json = json_decode($response->getContent(), true);
-
             $match = $this->matchsRepository->findOneBy(['match_id' => $value]);
-            // dd($match);
+            
             if ($match) {
                 $match->setData(array($json['info']));
                 $this->em->getManager()->persist($match);
@@ -87,12 +83,6 @@ class ApiController extends AbstractController
         }
         $this->em->getManager()->flush();
 
-        return $response;
-    }
-
-    #[Route('/get-items-data', name: 'get-items-data')]
-    public function getDataForItems()
-    {
         // Récupère les données pour les ITEMS
         $response = $this->apiService->callToApi('https://ddragon.leagueoflegends.com/cdn/12.18.1/data/fr_FR/item.json');
         $json = json_decode($response->getContent(), true);
@@ -122,5 +112,14 @@ class ApiController extends AbstractController
         }
 
         return $response;
+    }
+
+    #[Route('/get-matches-from-summoner', name: 'get-matches-from-summoner')]
+    public function getMatchesFromSummoner()
+    {
+        $summoner = $this->summonerRepository->findOneBy(['name' => 'SPKTRA']);
+        dd($summoner->getMatchs());
+        
+        return $summoner;
     }
 }
