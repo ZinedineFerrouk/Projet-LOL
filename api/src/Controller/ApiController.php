@@ -12,6 +12,7 @@ use App\Repository\SummonerRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/api', name: 'api')]
 class ApiController extends AbstractController
@@ -114,12 +115,23 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    #[Route('/get-matches-from-summoner', name: 'get-matches-from-summoner')]
-    public function getMatchesFromSummoner()
+    #[Route('/get-matchs/summoner/{id}/{region}', name: 'get-matchs-user')]
+    public function getMatchsUser(Int $id, String $region)
     {
-        $summoner = $this->summonerRepository->findOneBy(['name' => 'SPKTRA']);
-        dd($summoner->getMatchs());
-        
-        return $summoner;
+        $summoner = $this->summonerRepository->findOneBy(['id' => $id, 'region' => $region]);
+        if ($summoner) {
+            $formatMatchs = [];
+            $matchs = $summoner->getMatchs();
+
+            foreach ($matchs as $key => $match) {
+                $formatMatchs[] = [
+                    "id" => $match->getId(),
+                    "match_id" => $match->getMatchId(),
+                    "match_data" => $match->getData()
+                ];
+            }
+        }
+
+        return new JsonResponse($formatMatchs);
     }
 }
