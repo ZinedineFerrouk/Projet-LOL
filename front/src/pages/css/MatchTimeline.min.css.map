@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,UAAU,AAAA,CACN,gBAAgB,CAAE,kBAAkB,CACvC",
-    "sources": [
-        "../map/MatchTimeline.scss"
-    ],
-    "names": [],
-    "file": "MatchTimeline.min.css"
-}

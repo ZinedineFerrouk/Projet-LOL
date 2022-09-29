@@ -20,16 +20,18 @@ const MatchTimeline = () => {
   console.log(matchTimeline);
 
   return (
-  <div className="container">
-    <div className="blue-team"></div>
+    <div className="page page-timeline">
+      <div className="container">
+        <div className="blue-team"></div>
 
-    {/* TIMELINE MAP */}
-    <div className="map">
-        {/* <img src="../../assets/img/lol_map.webp" alt="" style={'width: 150px'}/> */}
+        {/* TIMELINE MAP */}
+        <div className="map">
+          {/* <img src="../../assets/img/lol_map.webp" alt="" style={'width: 150px'}/> */}
+        </div>
+        <div className="red-team"></div>
+      </div>
     </div>
-    <div className="red-team"></div>
-  </div>
-  )
+  );
 };
 
 export default MatchTimeline;
