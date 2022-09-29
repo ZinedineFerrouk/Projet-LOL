@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'lol';
+    src: url('friz_quadrata_regular-webfont.woff2') format('woff2'),
+         url('friz_quadrata_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'lol';
+    src: url('friz_quadrata_bold-webfont.woff2') format('woff2'),
+         url('friz_quadrata_bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
