@@ -2,62 +2,14 @@ import { useEffect, useState } from 'react';
 import './SearchBar.scss';
 import searchLine from '../../assets/img/icons/search-line.svg';
 import { Link } from 'react-router-dom';
+import { getSummonerByName } from "../../Service/MatchService";
 
 const SearchBar = (props) => {
 
     const [hideResults, setHideResults] = useState(true);
+    const [players, setPlayers] = useState([]);
     const [inputText, setInputText] = useState('');
     const [playerIsEmpty, setPlayerIsEmpty] = useState(false);
-    const PLAYERS = [
-        {
-            id: 1,
-            name: 'Skyyinfinity',
-            iconId: 5489,
-            level: 256,
-            region: 'EUW'
-        },
-        {
-            id: 2,
-            name: 'Orlando38',
-            iconId: 1564,
-            level: 256,
-            region: 'NA'
-        },
-        {
-            id: 3,
-            name: 'Skyrreez',
-            iconId: 4587,
-            level: 256,
-            region: 'EUW'
-        },
-        {
-            id: 3,
-            name: 'Skyrreez',
-            iconId: 4587,
-            level: 256,
-            region: 'EUW'
-        },
-        {
-            id: 3,
-            name: 'Skyrreez',
-            iconId: 4587,
-            level: 256,
-            region: 'EUW'
-        },
-        {
-            id: 3,
-            name: 'Skyrreez',
-            iconId: 4587,
-            level: 256,
-            region: 'EUW'
-        }
-    ];
-    
-    useEffect(() => {
-        if(PLAYERS.length === 0) {
-            setPlayerIsEmpty(true);
-        }
-    });
 
     const triggerInput = (e) => {
         if(e.target.value.length >= 3) {
@@ -66,12 +18,21 @@ const SearchBar = (props) => {
             setHideResults(false);
             
             // call api
+            getSummonerByName(e.target.value).then((res) => {
+                if (res.data.length > 0) {
+                    setPlayers(res.data)
+                    setPlayerIsEmpty(false)
+                } else {
+                    setPlayerIsEmpty(true);
+                }
+            });
 
             // if no response
         } else {
             setHideResults(true);
         }
     }
+    console.log(players);
 
   return (
     <div className="searchbar">
@@ -99,17 +60,17 @@ const SearchBar = (props) => {
         ) : (
             <ul className="results" aria-hidden={ hideResults }>
             {
-                PLAYERS.map((player, index) => {
+                players.map((player, index) => {
                     return <Link to="/" key={ index }>
                         <li className="result">
                             <div className="player-icon">
-                                <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.iconId}.jpg` } alt="player icon" />
+                                <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.icon_id}.jpg` } alt="player icon" />
                             </div>
                             <div className="player-content">
                                 <span className="tag tag-info region">{ player.region }</span>
                                 <p className="name">{ player.name }</p>
                                 <span className="separator">•</span>
-                                <p className="level">Niveau { player.level }</p>
+                                <p className="level">Niveau { player.summoner_level }</p>
                             </div>
                         </li>
                     </Link>

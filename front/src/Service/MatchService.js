@@ -5,6 +5,12 @@ import axios from "axios";
  */
 const baseUrl = "http://127.0.0.1:8000/api";
 
+export const getSummonerByName = (name) => {
+  return axios.get(
+    baseUrl + "/get-summoner/" + name
+  );
+};
+
 export const getMatchsBySummonerName = (summonerName, regionId) => {
   return axios.get(
     baseUrl + "/get-matchs/summoner/" + summonerName + "/" + regionId

@@ -39,6 +39,16 @@ class SummonerRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByName($input)
+    {
+        return $this->createQueryBuilder('s')
+            ->select(('s'))
+            ->where('s.name LIKE :input')
+            ->setParameter('input', '%' . $input . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Summoner[] Returns an array of Summoner objects
 //     */

@@ -11,21 +11,8 @@ import {
   background5,
 } from "../../assets/img/background.js";
 import SearchBar from "../../components/searchbar/SearchBar";
-import { getMatchsBySummonerName } from "../../Service/MatchService";
 
 const Home = () => {
-  const [match, setMatch] = useState({});
-
-  useEffect(() => {
-    let formatMatch = [];
-    getMatchsBySummonerName("SPKTRA", "EUW").then((res) => {
-      for (let i = 0; i < res.data.length; i++) {
-        formatMatch.push(res.data[i].match_data);
-      }
-      setMatch(formatMatch);
-    });
-  }, []);
-
   const BACKGROUNDS = [
     background1,
     background2,
@@ -33,7 +20,7 @@ const Home = () => {
     background4,
     background5,
   ];
-  console.log(match);
+  // console.log(match);
 
   const REGIONS = [
     {

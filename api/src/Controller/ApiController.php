@@ -118,7 +118,7 @@ class ApiController extends AbstractController
             $match = $this->matchsRepository->findOneBy(['match_id' => $matchId]);
             if ($match) {
                 $match->setData(array($jsonTimeLine['info']));
-                $match->setGeneralData([json_encode($formatGeneralMatch[$key])]);
+                $match->setGeneralData([$formatGeneralMatch[$key]]);
                 $this->em->getManager()->persist($match);
             }
         }
@@ -155,6 +155,28 @@ class ApiController extends AbstractController
         return $response;
     }
 
+    #[Route('/get-summoner/{name}', name: 'get-summoner')]
+    public function getSummonerByName($name)
+    {
+        $summoners = $this->summonerRepository->findByName($name);
+
+        $formatSummoner = [];
+        if ($summoners) {
+            foreach ($summoners as $summoner) {
+                $formatSummoner[] = [
+                    'puuid' => $summoner->getPuuid(),
+                    'name' => $summoner->getName(),
+                    'summoner_level' => $summoner->getSumonnerLevel(),
+                    'summoner_id' => $summoner->getSummonerId(),
+                    'region' => $summoner->getRegion(),
+                    'icon_id' => $summoner->getProfileIconId()
+                ];
+            }
+        }
+
+        return new JsonResponse($formatSummoner);
+    }
+
     #[Route('/get-matchs/summoner/{name}/{region}', name: 'get-matchs-user')]
     public function getMatchsUser(String $name, String $region)
     {
@@ -177,7 +199,6 @@ class ApiController extends AbstractController
     public function getMatchTimeline($match_id)
     {
         $match = $this->matchsRepository->findOneBy(["match_id" => $match_id]);
-        dd($match);
 
         if ($match) {
             $matchTimeline = $match->getData();
