@@ -1,6 +1,5 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import "./Home.scss";
+import React, { useEffect, useState } from 'react';
+import './Home.scss';
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/mapol-logo.svg";
 import {
@@ -13,6 +12,9 @@ import {
 import SearchBar from "../../components/searchbar/SearchBar";
 
 const Home = () => {
+  
+  const [regions, setRegions] = useState([]);
+
   const BACKGROUNDS = [
     background1,
     background2,
@@ -20,9 +22,8 @@ const Home = () => {
     background4,
     background5,
   ];
-  // console.log(match);
 
-  const REGIONS = [
+  const fakeRegions = [
     {
       name: "Europe Ouest",
       value: "EUW",
@@ -36,10 +37,16 @@ const Home = () => {
       value: "NA",
     },
     {
-      name: "Océanie",
-      value: "OCE",
-    },
+        name: 'Océanie',
+        value: 'OCE'
+    }
   ];
+
+  useEffect(() => {
+    if(regions.length === 0) {
+      setRegions(fakeRegions);
+    }
+  }, []);
 
   let backgroundUrl =
     BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)];
@@ -61,7 +68,7 @@ const Home = () => {
           </Link>
         </div>
         <div className="search">
-          <SearchBar regions={REGIONS} />
+          <SearchBar regions={ regions } />
         </div>
         <div className="introduction">
           <p>
