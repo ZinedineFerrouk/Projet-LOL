@@ -11,19 +11,18 @@ import {
   background5,
 } from "../../assets/img/background.js";
 import SearchBar from "../../components/searchbar/SearchBar";
-import { getSummonerById } from "../../Service/MatchService";
+import { getMatchsBySummonerName } from "../../Service/MatchService";
 
 const Home = () => {
   const [match, setMatch] = useState({});
 
   useEffect(() => {
     let formatMatch = [];
-    getSummonerById("1", "EUW").then((res) => {
+    getMatchsBySummonerName("SPKTRA", "EUW").then((res) => {
       for (let i = 0; i < res.data.length; i++) {
         formatMatch.push(res.data[i].match_data);
       }
       setMatch(formatMatch);
-      console.log(match);
     });
   }, []);
 

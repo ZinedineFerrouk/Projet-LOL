@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../not-found/NotFound.scss"
+    ],
+    "names": [],
+    "file": "NotFound.min.css"
+}

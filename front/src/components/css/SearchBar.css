@@ -1,0 +1,135 @@
+.searchbar {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.searchbar button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(1px, -50%);
+          transform: translate(1px, -50%);
+  height: 54px;
+  width: 54px;
+}
+
+.searchbar .select {
+  border-radius: 100px 0 0 100px;
+  border-right: 1px solid var(--c-secondary-darker);
+  padding-right: calc(16px + 24px);
+  height: 100%;
+}
+
+.searchbar .input-container {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.searchbar .input-container input.input {
+  height: 100%;
+}
+
+.searchbar .results {
+  visibility: visible;
+  opacity: 1;
+  margin-top: 8px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--c-secondary);
+  border-radius: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 372px;
+  -webkit-transition: var(--a-transition);
+  transition: var(--a-transition);
+}
+
+.searchbar .results[aria-hidden=true] {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.searchbar .results a {
+  text-decoration: none;
+}
+
+.searchbar .results .result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16px;
+  -webkit-transition: var(--a-transition);
+  transition: var(--a-transition);
+  padding: 16px;
+}
+
+.searchbar .results .result:hover {
+  background-color: var(--c-secondary-darker);
+}
+
+.searchbar .results .result .is-empty {
+  width: 100%;
+}
+
+.searchbar .results .result .player-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.searchbar .results .result .player-content p {
+  display: inline-block;
+  color: var(--c-text);
+}
+
+.searchbar .results .result .player-content p.name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.searchbar .results .result .player-content p.level {
+  margin-right: auto;
+}
+
+@media screen and (max-width: 480px) {
+  .searchbar {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 8px;
+  }
+  .searchbar .select {
+    border-radius: 100px;
+    border-right: none;
+    padding-right: 16px;
+  }
+  .searchbar button {
+    top: auto;
+    bottom: 0;
+    -webkit-transform: translate(1px, 0);
+            transform: translate(1px, 0);
+  }
+  .searchbar .input-container input.input {
+    border-radius: 100px;
+  }
+  .searchbar .results .result .player-content .separator {
+    display: none;
+  }
+  .searchbar .results .result .player-content p {
+    display: block;
+  }
+}
+/*# sourceMappingURL=SearchBar.css.map */

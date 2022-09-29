@@ -115,10 +115,10 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    #[Route('/get-matchs/summoner/{id}/{region}', name: 'get-matchs-user')]
-    public function getMatchsUser(Int $id, String $region)
+    #[Route('/get-matchs/summoner/{name}/{region}', name: 'get-matchs-user')]
+    public function getMatchsUser(String $name, String $region)
     {
-        $summoner = $this->summonerRepository->findOneBy(['id' => $id, 'region' => $region]);
+        $summoner = $this->summonerRepository->findOneBy(['name' => $name, 'region' => $region]);
         if ($summoner) {
             $formatMatchs = [];
             $matchs = $summoner->getMatchs();
@@ -133,5 +133,17 @@ class ApiController extends AbstractController
         }
 
         return new JsonResponse($formatMatchs);
+    }
+
+    #[Route('/get-match-timeline/{match_id}', name: 'get-match-timeline')]
+    public function getMatchTimeline($match_id)
+    {
+        $match = $this->matchsRepository->findOneBy(["match_id" => $match_id]);
+
+        if ($match) {
+            $matchTimeline = $match->getData();
+        }
+
+        return new JsonResponse($matchTimeline);
     }
 }
