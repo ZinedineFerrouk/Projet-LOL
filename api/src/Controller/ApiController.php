@@ -177,6 +177,7 @@ class ApiController extends AbstractController
     public function getMatchTimeline($match_id)
     {
         $match = $this->matchsRepository->findOneBy(["match_id" => $match_id]);
+        dd($match);
 
         if ($match) {
             $matchTimeline = $match->getData();

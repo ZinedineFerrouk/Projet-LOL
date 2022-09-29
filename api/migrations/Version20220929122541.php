@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220928075657 extends AbstractMigration
+final class Version20220929122541 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,7 +22,7 @@ final class Version20220928075657 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE champions (id INT AUTO_INCREMENT NOT NULL, champion_id VARCHAR(255) NOT NULL, icon VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE items (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, icon VARCHAR(255) NOT NULL, item_id VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE matchs (id INT AUTO_INCREMENT NOT NULL, data JSON NOT NULL, match_id VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE matchs (id INT AUTO_INCREMENT NOT NULL, data JSON NOT NULL, match_id VARCHAR(255) NOT NULL, general_data JSON NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE matchs_summoner (matchs_id INT NOT NULL, summoner_id INT NOT NULL, INDEX IDX_C9F87DF688EB7468 (matchs_id), INDEX IDX_C9F87DF6BC01C675 (summoner_id), PRIMARY KEY(matchs_id, summoner_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE summoner (id INT AUTO_INCREMENT NOT NULL, puuid VARCHAR(255) DEFAULT NULL, name VARCHAR(255) DEFAULT NULL, profile_icon_id INT DEFAULT NULL, sumonner_level INT DEFAULT NULL, summoner_id VARCHAR(255) NOT NULL, region VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE matchs_summoner ADD CONSTRAINT FK_C9F87DF688EB7468 FOREIGN KEY (matchs_id) REFERENCES matchs (id) ON DELETE CASCADE');
