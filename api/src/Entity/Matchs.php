@@ -24,6 +24,9 @@ class Matchs
     #[ORM\Column(length: 255)]
     private ?string $match_id = null;
 
+    #[ORM\Column]
+    private array $general_data = [];
+
     public function __construct()
     {
         $this->summoner = new ArrayCollection();
@@ -78,6 +81,18 @@ class Matchs
     public function setMatchId(string $match_id): self
     {
         $this->match_id = $match_id;
+
+        return $this;
+    }
+
+    public function getGeneralData(): array
+    {
+        return $this->general_data;
+    }
+
+    public function setGeneralData(?array $general_data): self
+    {
+        $this->general_data = $general_data;
 
         return $this;
     }
