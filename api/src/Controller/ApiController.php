@@ -72,7 +72,7 @@ class ApiController extends AbstractController
         $this->em->getManager()->flush();
         $formatGeneralMatch = [];
         $matchs = $this->matchsRepository->findAll();
-        foreach ($matchs as $match) {
+        foreach ($matchs as $key => $match) {
             $matchId = $match->getMatchId();
             $responseGeneralMatch = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/' . $matchId, array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
             $responseTimeLine = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/' . $matchId . '/timeline', array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
@@ -118,7 +118,7 @@ class ApiController extends AbstractController
             $match = $this->matchsRepository->findOneBy(['match_id' => $matchId]);
             if ($match) {
                 $match->setData(array($jsonTimeLine['info']));
-                $match->setGeneralData([json_encode($formatGeneralMatch)]);
+                $match->setGeneralData([json_encode($formatGeneralMatch[$key])]);
                 $this->em->getManager()->persist($match);
             }
         }
