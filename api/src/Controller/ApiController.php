@@ -70,15 +70,55 @@ class ApiController extends AbstractController
         }
 
         $this->em->getManager()->flush();
-
-        foreach ($json as $value) {
-            // dd($value);
-            $response = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/' . $value . '/timeline', array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
-            $json = json_decode($response->getContent(), true);
-            $match = $this->matchsRepository->findOneBy(['match_id' => $value]);
-            
+        $formatGeneralMatch = [];
+        $matchs = $this->matchsRepository->findAll();
+        foreach ($matchs as $match) {
+            $matchId = $match->getMatchId();
+            $responseGeneralMatch = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/' . $matchId, array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
+            $responseTimeLine = $this->apiService->callToApi('https://europe.api.riotgames.com/lol/match/v5/matches/' . $matchId . '/timeline', array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
+            $jsonTimeLine = json_decode($responseTimeLine->getContent(), true);
+            $jsonGeneral = json_decode($responseGeneralMatch->getContent(), true);
+            $formatChampions = [];
+            $champions = $jsonGeneral['info']['participants'];
+            foreach ($champions as $champion) {
+                $formatChampions[] = [
+                    'puuid' => $champion['puuid'],
+                    'summonerName' => $champion['summonerName'],
+                    'championName' => $champion['championName'],
+                    'teamId' => $champion['teamId'],
+                    'kda' => $champion['challenges']['kda'],
+                    'win' => $champion['win'],
+                    'region' => 'EUW'
+                ];
+                $summoner = $this->summonerRepository->findOneBy(['name' => $champion['summonerName']]);
+                if (!$summoner) {
+                    $summoner = new Summoner;
+                    $summoner->setPuuid($champion['puuid']);
+                    $summoner->setName($champion['summonerName']);
+                    $summoner->setProfileIconId($champion['profileIcon']);
+                    $summoner->setSumonnerLevel($champion['summonerLevel']);
+                    $summoner->setSummonerId($champion['summonerId']);
+                    $summoner->setRegion('EUW');
+                    $this->em->getManager()->persist($summoner);
+                }
+                $match = $this->matchsRepository->findOneBy(['match_id' => $matchId]);
+                if ($match) {
+                    $match->addSummoner($summoner);
+                    $summoner->addMatch($match);
+                    $this->em->getManager()->persist($summoner);
+                    $this->em->getManager()->persist($match);
+                }
+            }
+            $this->em->getManager()->flush();
+            $formatGeneralMatch[] = [
+                'game_duration' => $jsonGeneral['info']['gameDuration'],
+                'game_type' => $jsonGeneral['info']['gameType'],
+                'champions' => $formatChampions
+            ];
+            $match = $this->matchsRepository->findOneBy(['match_id' => $matchId]);
             if ($match) {
-                $match->setData(array($json['info']));
+                $match->setData(array($jsonTimeLine['info']));
+                $match->setGeneralData([json_encode($formatGeneralMatch)]);
                 $this->em->getManager()->persist($match);
             }
         }
@@ -115,23 +155,21 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    #[Route('/get-matchs/summoner/{id}/{region}', name: 'get-matchs-user')]
-    public function getMatchsUser(Int $id, String $region)
+    #[Route('/get-matchs/summoner/{name}/{region}', name: 'get-matchs-user')]
+    public function getMatchsUser(String $name, String $region)
     {
-        $summoner = $this->summonerRepository->findOneBy(['id' => $id, 'region' => $region]);
+        $summoner = $this->summonerRepository->findOneBy(['name' => $name, 'region' => $region]);
         if ($summoner) {
             $formatMatchs = [];
             $matchs = $summoner->getMatchs();
-
-            foreach ($matchs as $key => $match) {
+            foreach ($matchs as $match) {
                 $formatMatchs[] = [
                     "id" => $match->getId(),
                     "match_id" => $match->getMatchId(),
-                    "match_data" => $match->getData()
+                    "general_data" => $match->getGeneralData()
                 ];
             }
         }
-
         return new JsonResponse($formatMatchs);
     }
 }
