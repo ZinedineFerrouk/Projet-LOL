@@ -65,6 +65,7 @@
                 height: 48px;
                 border-radius: 50%;
                 overflow: hidden;
+                border: 2px solid var(--c-primary);
             }
             .player-content {
                 p {
@@ -79,6 +80,7 @@
                 p.level {
                     margin-right: auto;
                     font-weight: lighter;
+                    color: var(--c-text-shade);
                 }
             }
         }

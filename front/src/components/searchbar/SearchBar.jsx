@@ -49,19 +49,21 @@ const SearchBar = (props) => {
                 <ul className="results" aria-hidden={ hideResults }>
                 {
                     props.players.map((player, index) => {
-                        return <Link to={ `/player/${player.id}` } key={ index }>
-                            <li className="result">
-                                <div className="player-icon">
-                                    <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.iconId}.jpg` } alt="player icon" />
-                                </div>
-                                <div className="player-content">
-                                    <span className="tag tag-info region">{ player.region }</span>
-                                    <p className="name">{ player.name }</p>
-                                    <span className="separator">•</span>
-                                    <p className="level">Niveau { player.level }</p>
-                                </div>
-                            </li>
-                        </Link>
+                        return (
+                            <Link to={ `/player/${player.name}` } key={ index }>
+                                <li className="result">
+                                    <div className="player-icon">
+                                        <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.iconId}.jpg` } alt="player icon" />
+                                    </div>
+                                    <div className="player-content">
+                                        <span className="tag tag-info region">{ player.region }</span>
+                                        <p className="name">{ player.name }</p>
+                                        <span className="separator">•</span>
+                                        <p className="level">Niveau { player.level }</p>
+                                    </div>
+                                </li>
+                            </Link>
+                        )
                     })
                 }
                 </ul>
