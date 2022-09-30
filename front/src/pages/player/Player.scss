@@ -1,5 +1,5 @@
 .page-player {
-    padding: 96px 0;
+    padding: calc(96px + 80px) 0;
     color: var(--c-text);
 
     .grid-box {
@@ -21,6 +21,11 @@
                 border-radius: 50%;
                 overflow: hidden;
                 border: 2px solid var(--c-primary);
+
+                img {
+                    object-fit: cover;
+                    height: 100%;
+                }
             }
             .info {
                 .name {
@@ -89,7 +94,7 @@
                     .team {
                         border-radius: 8px;
                         display: flex;
-                        gap: 16px;
+                        justify-content: space-evenly;
                         flex: 1;
                         color: var(--c-text-alt);
                         width: 100%;
@@ -118,6 +123,11 @@
                                 border-radius: 50%;
                                 overflow: hidden;
                                 border: 2px solid var(--c-primary);
+
+                                img {
+                                    object-fit: cover;
+                                    height: 100%;
+                                }
                             }
                             .player-info {
                                 .name {

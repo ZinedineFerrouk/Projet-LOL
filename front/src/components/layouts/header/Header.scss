@@ -1,0 +1,20 @@
+.layout-header {
+    padding: 16px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    background-color: rgba(var(--c-secondary-rgb), 0.45);
+    backdrop-filter: blur(8px);
+
+    .back {
+        float: left;
+    }
+    button.btn {
+        padding: 12px;
+    }
+    .logo {
+        width: 150px;
+        margin: 0 auto;
+    }
+}

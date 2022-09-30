@@ -43,6 +43,8 @@ const Home = () => {
   ];
 
   useEffect(() => {
+    document.title = 'Mapol : Map Of Legends';
+
     if(regions.length === 0) {
       setRegions(fakeRegions);
     }

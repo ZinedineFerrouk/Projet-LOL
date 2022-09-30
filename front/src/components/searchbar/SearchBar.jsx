@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './SearchBar.scss';
 import searchLine from '../../assets/img/icons/search-line.svg';
 import { Link } from 'react-router-dom';
-import { getSummonerByName } from "../../Service/MatchService";
+import SummonerService from '../../services/SummonerService';
 
 const SearchBar = (props) => {
 
+    const SUMMONER_SERVICE = new SummonerService();
     const [hideResults, setHideResults] = useState(true);
     const [players, setPlayers] = useState([]);
     const [inputText, setInputText] = useState('');
@@ -18,9 +19,10 @@ const SearchBar = (props) => {
             setHideResults(false);
             
             // call api
-            getSummonerByName(e.target.value).then((res) => {
+            // FIXME: Get all summoners by name. NOT get one summoner by name
+            SUMMONER_SERVICE.getOneByName(e.target.value).then((res) => {
                 if (res.data.length > 0) {
-                    setPlayers(res.data)
+                    setPlayers(res.data);
                     setPlayerIsEmpty(false)
                 } else {
                     setPlayerIsEmpty(true);
@@ -32,7 +34,6 @@ const SearchBar = (props) => {
             setHideResults(true);
         }
     }
-    console.log(players);
 
     return (
         <div className="searchbar">
@@ -61,7 +62,7 @@ const SearchBar = (props) => {
                 <ul className="results" aria-hidden={ hideResults }>
                 {
                     players.map((player, index) => {
-                        return <Link to="/" key={ index }>
+                        return <Link to={ `/joueur/${player.name}` } key={ index }>
                             <li className="result">
                                 <div className="player-icon">
                                     <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.icon_id}.jpg` } alt="player icon" />

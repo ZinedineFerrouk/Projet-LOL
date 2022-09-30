@@ -1,16 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getMatchTimeline } from "../../Service/MatchService";
+import MatchService from "../../services/MatchService";
 import "./MatchTimeline.scss";
 
 const MatchTimeline = () => {
+  const MATCH_SERVICE = new MatchService();
   const [matchTimeline, setMatchTimeline] = useState({});
 
   useEffect(() => {
+    document.title = 'Résumé | Mapol: Map Of Legends';
+
     // Appeler la route API pour récupèrer les champions et le nom des invocateurs
     let formatMatchTimeline = [];
 
-    getMatchTimeline("EUW1_6081980145").then((res) => {
+    MATCH_SERVICE.getOneTimeline("EUW1_6081980145")
+    .then((res) => {
       for (let i = 0; i < res["data"][0]["frames"].length; i++) {
         formatMatchTimeline.push(res["data"][0]["frames"][i]);
       }
