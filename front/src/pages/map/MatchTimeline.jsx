@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getMatchTimeline } from "../../Service/MatchService";
+import MatchService from "../../services/MatchService";
 import "./MatchTimeline.scss";
 import match_map from "../../assets/img/match-map.webp";
 
@@ -9,12 +9,15 @@ const MatchTimeline = () => {
   const [matchTimeline, setMatchTimeline] = useState({}); 
   const [killInfos, setkillInfos] = useState([]);
   const params = useParams();
+  const matchService = new MatchService();
 
   useEffect(() => {
+    document.title = 'Résumé | Mapol : Map Of Legends';
     let killInfosFormat = [];
     // Appeler la route API pour récupèrer les champions et le nom des invocateurs
 
-    getMatchTimeline(params.match_id).then((res) => { 
+    matchService.getOneTimeline(params.match_id).then((res) => { 
+      console.log(res.data);
       setMatchTimeline(res["data"][0]["frames"]);
 
       for (let i = 0; i < matchTimeline.length; i++) {

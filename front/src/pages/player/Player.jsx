@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Player.scss";
 import { background1, background2, background3, background4, background5 } from '../../assets/img/background.js';
+import SummonerService from "../../services/SummonerService";
+import MatchService from "../../services/MatchService";
 
 const Player = () => {
-
+    const SUMMONER_SERVICE = new SummonerService();
+    const MATCH_SERVICE = new MatchService();
     const params = useParams();
     const [player, setPlayer] = useState({});
     const [matchs, setMatchs] = useState([]);
@@ -17,202 +21,72 @@ const Player = () => {
         background5
     ];
 
-    const fakePlayer = {
-        id: 1,
-        name: params.summonerName,
-        icon: 1621,
-        level: 152,
-        region: 'EUW'
-    }
-    const fakeMatchs = [
-        {
-            id: 1,
-            gameDuration: 1235,
-            gameType: 'MATCHED_GAME',
-            participants: [
-                {
-                    puuid: 1,
-                    summonerName: 'Elikopter',
-                    championName: 'Renekton', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 2,
-                    summonerName: 'Bulldozer54',
-                    championName: 'Irelia', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 3,
-                    summonerName: 'Ary_bot',
-                    championName: 'Irelia', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 4,
-                    summonerName: params.summonerName,
-                    championName: 'Renekton', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 5,
-                    summonerName: 'Eivor',
-                    championName: 'Renekton', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 6,
-                    summonerName: 'Ezio',
-                    championName: 'Irelia', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 7,
-                    summonerName: 'Connor',
-                    championName: 'Renekton', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 8,
-                    summonerName: 'Desmond',
-                    championName: 'Renekton', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 9,
-                    summonerName: 'Altair',
-                    championName: 'Irelia', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 10,
-                    summonerName: 'Bayek',
-                    championName: 'Renekton', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: false
-                }
-            ]
-        },
-        {
-            id: 2,
-            gameDuration: 1262,
-            gameType: 'MATCHED_GAME',
-            participants: [
-                {
-                    puuid: 1,
-                    summonerName: 'Elikopter',
-                    championName: 'Renekton', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 2,
-                    summonerName: params.summonerName,
-                    championName: 'Renekton', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 3,
-                    summonerName: 'Elikopter',
-                    championName: 'Irelia', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 4,
-                    summonerName: 'Elikopter',
-                    championName: 'Renekton', // Irelia
-                    teamId: 100,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 5,
-                    summonerName: 'Elikopter',
-                    championName: 'Irelia', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: false
-                },
-                {
-                    puuid: 6,
-                    summonerName: 'Elikopter',
-                    championName: 'Renekton', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 7,
-                    summonerName: 'Elikopter',
-                    championName: 'Renekton', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 8,
-                    summonerName: 'Elikopter',
-                    championName: 'Renekton', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 9,
-                    summonerName: 'Elikopter',
-                    championName: 'Irelia', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: true
-                },
-                {
-                    puuid: 10,
-                    summonerName: 'Elikopter',
-                    championName: 'Irelia', // Irelia
-                    teamId: 200,
-                    kda: 2.3333333333355,
-                    win: true
-                }
-            ]
-        }
-    ]
+    // FIXME: Fix call twice !!  
+
+    // const MyComponent = () => {
+    //     const [data, setData] = useState({});
+    
+    //     const loadData = useCallback(() => {
+    //         const fetchData = axios.get(`${process.env.REACT_APP_BASE_URL}/get-summoner/SPKTRA`).then(response => {return response.data;});
+            
+    //         return fetchData;
+            
+    //     }, []);
+        
+    //     useEffect(() => {
+    //         let dataLoaded = true;
+            
+    //         const reloadData = () => {
+    //             if(dataLoaded) {
+    //                 loadData().then(response => setData(response));
+    //             }
+    //         }
+            
+    //         reloadData();
+            
+            
+    //         //Clean up function
+    //         return () => {
+    //             dataLoaded = false;
+    //         }
+            
+    //     }, [loadData]);
+    //     return data;
+    // }
+
+    // let getData = MyComponent();
+    // console.log(getData);
+
+    const fetchSummoner = async () => {
+
+        // Call to API to get one summoner
+        await SUMMONER_SERVICE.getOneByName(params.summonerName)
+        .then((response) => {
+            if(response.data.length > 0) {
+                setPlayer(response.data[0]);
+            }
+        });
+
+    };
+
+    const fetchMatchs = async () => {
+
+        // Call to API to get all matchs
+        await MATCH_SERVICE.getAllBySummoner(params.summonerName, player.region)
+        .then((response) => {
+            if(response.data.length > 0) {
+                setMatchs(response.data);
+            }
+        });
+
+    };
 
     useEffect(() => {
-        // Call to API
+        document.title = `${params.summonerName} | Mapol: Map Of Legends`;
 
-        // Set Player to State
-        if(Object.keys(player).length === 0) {
-            setPlayer(fakePlayer);
-        }
-        // Set Matchs to State
-        if(Object.keys(matchs).length === 0) {
-            setMatchs(fakeMatchs);
-        }
-    });
+        fetchSummoner();
+        fetchMatchs();
+    }, []);
 
     let backgroundUrl = BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)];
 
@@ -228,13 +102,13 @@ const Player = () => {
                     <h2 className="box-title">Informations</h2>
                     <div className="player-details">
                         <div className="avatar">
-                            <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.icon}.jpg` } alt="player icon" />
+                            <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.icon_id}.jpg` } alt="player icon" />
                         </div>
                         <div className="info">
                             <h3 className="name">{ player.name }</h3>
                             <div className="tags">
                                 <span className="tag tag-info region">{ player.region }</span>
-                                <span className="tag tag-primary level">LVL { player.level }</span>
+                                <span className="tag tag-primary level">LVL { player.summoner_level }</span>
                             </div>
                         </div>
                     </div>
@@ -247,23 +121,23 @@ const Player = () => {
                                 return (
                                     <li className="match" key={ index }>
                                         <div className="match-info">
-                                            <h3 className="gametype">{ match.gameType === 'MATCHED_GAME' ? 'Match classé solo' : 'undefined' }</h3>
-                                            <p className="duration">Le match a durée <span>{ Math.round(match.gameDuration / 60) } minute(s)</span></p>
+                                            <h3 className="gametype">{ match.general_data[0].game_type === 'MATCHED_GAME' ? 'Match classé solo' : 'undefined' }</h3>
+                                            <p className="duration">Le match a durée <span>{ Math.round(match.general_data[0].game_duration / 60) } minute(s)</span></p>
                                         </div>
                                         <div className="teams">
                                             <div className="team team-winner">
                                                 {
-                                                    match.participants.map((participant, index) => {
-                                                        if(participant.win === true) {
+                                                    match.general_data[0].champions.map((champion, index) => {
+                                                        if(champion.win === true) {
                                                             return (
-                                                                <div key={ index } className={participant.summonerName === params.summonerName ? "player player-winner this-player" : "player player-winner"}>
+                                                                <div key={ index } className={champion.summonerName === params.summonerName ? "player player-winner this-player" : "player player-winner"}>
                                                                     <div className="champion-icon">
-                                                                        <img src={`https://opgg-static.akamaized.net/images/lol/champion/${participant.championName}.png`} alt="champion icon" />
+                                                                        <img src={`https://opgg-static.akamaized.net/images/lol/champion/${champion.championName}.png`} alt="champion icon" />
                                                                     </div>
                                                                     <div className="player-info">
-                                                                        <p className="name">{ participant.summonerName }</p>
-                                                                        <p className="champion-name">à jouer avec <span>{ participant.championName }</span></p>
-                                                                        <span className="tag tag-info kda">{ Math.round(participant.kda * 100) / 100 } KDA</span>
+                                                                        <p className="name">{ champion.summonerName }</p>
+                                                                        <p className="champion-name">à jouer avec <span>{ champion.championName }</span></p>
+                                                                        <span className="tag tag-info kda">{ Math.round(champion.kda * 100) / 100 } KDA</span>
                                                                     </div>
                                                                 </div>
                                                             )
@@ -271,20 +145,22 @@ const Player = () => {
                                                     })
                                                 }
                                             </div>
+
                                             <div className="separator versus">VS</div>
+
                                             <div className="team team-loser">
                                                 {
-                                                    match.participants.map((participant, index) => {
-                                                        if(participant.win === false) {
+                                                    match.general_data[0].champions.map((champion, index) => {
+                                                        if(champion.win === false) {
                                                             return (
-                                                                <div key={ index } className={participant.summonerName === params.summonerName ? "player player-loser this-player" : "player player-winner"}>
+                                                                <div key={ index } className={champion.summonerName === params.summonerName ? "player player-loser this-player" : "player player-winner"}>
                                                                     <div className="champion-icon">
-                                                                        <img src={`https://opgg-static.akamaized.net/images/lol/champion/${participant.championName}.png`} alt="champion icon" />
+                                                                        <img src={`https://opgg-static.akamaized.net/images/lol/champion/${champion.championName}.png`} alt="champion icon" />
                                                                     </div>
                                                                     <div className="player-info">
-                                                                        <p className="name">{ participant.summonerName }</p>
-                                                                        <p className="champion-name">à jouer avec <span>{ participant.championName }</span></p>
-                                                                        <span className="tag tag-info kda">{ Math.round(participant.kda * 100) / 100 } KDA</span>
+                                                                        <p className="name">{ champion.summonerName }</p>
+                                                                        <p className="champion-name">à jouer avec <span>{ champion.championName }</span></p>
+                                                                        <span className="tag tag-info kda">{ Math.round(champion.kda * 100) / 100 } KDA</span>
                                                                     </div>
                                                                 </div>
                                                             )
@@ -297,7 +173,6 @@ const Player = () => {
                                 )
                             })
                         }
-                        
                     </ul>
                 </div>
             </div>
