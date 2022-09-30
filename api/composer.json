@@ -14,12 +14,6 @@
         "symfony/dotenv": "6.1.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.1.*",
-<<<<<<< HEAD
-        "symfony/proxy-manager-bridge": "6.1.*",
-        "symfony/runtime": "^6.1",
-        "symfony/yaml": "6.1.*"
-    },
-=======
         "symfony/http-client": "6.1.*",
         "symfony/proxy-manager-bridge": "6.1.*",
         "symfony/runtime": "6.1.*",
@@ -28,7 +22,6 @@
     "require-dev": {
         "symfony/maker-bundle": "^1.46"
     },
->>>>>>> origin/dev-api
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
