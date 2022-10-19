@@ -1,6 +1,8 @@
 .page-timeline {
     background-color: var(--c-secondary);
     height: 100vh;
+    padding: 96px 0;
+    padding-top: calc(96px + 80px);
     
     .container{
         display: flex;

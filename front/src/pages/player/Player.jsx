@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Player.scss";
 import { background1, background2, background3, background4, background5 } from '../../assets/img/background.js';
 import SummonerService from "../../services/SummonerService";
 import MatchService from "../../services/MatchService";
+import { useQuery } from "react-query";
 
 const Player = () => {
-    const SUMMONER_SERVICE = new SummonerService();
+    const SUMMONER_SERVICE = new SummonerService(); 
     const MATCH_SERVICE = new MatchService();
     const params = useParams();
     const [player, setPlayer] = useState({});
@@ -21,71 +22,26 @@ const Player = () => {
         background5
     ];
 
-    // FIXME: Fix call twice !!  
+    useQuery(["player"], async () => {
+        /// Call to API to get player by name
+        const response = await SUMMONER_SERVICE.getOneByName(params.summonerName);
 
-    // const MyComponent = () => {
-    //     const [data, setData] = useState({});
-    
-    //     const loadData = useCallback(() => {
-    //         const fetchData = axios.get(`${process.env.REACT_APP_BASE_URL}/get-summoner/SPKTRA`).then(response => {return response.data;});
-            
-    //         return fetchData;
-            
-    //     }, []);
-        
-    //     useEffect(() => {
-    //         let dataLoaded = true;
-            
-    //         const reloadData = () => {
-    //             if(dataLoaded) {
-    //                 loadData().then(response => setData(response));
-    //             }
-    //         }
-            
-    //         reloadData();
-            
-            
-    //         //Clean up function
-    //         return () => {
-    //             dataLoaded = false;
-    //         }
-            
-    //     }, [loadData]);
-    //     return data;
-    // }
+        if(response.data.length > 0) {
+            setPlayer(response.data[0]);
+        }
+    })
 
-    // let getData = MyComponent();
-    // console.log(getData);
+    useQuery(["match"], async () => {
+        /// Call to API to get all matchs
+        const response = await MATCH_SERVICE.getAllBySummoner(params.summonerName, 'EUW');
 
-    const fetchSummoner = async () => {
-
-        // Call to API to get one summoner
-        await SUMMONER_SERVICE.getOneByName(params.summonerName)
-        .then((response) => {
-            if(response.data.length > 0) {
-                setPlayer(response.data[0]);
-            }
-        });
-
-    };
-
-    const fetchMatchs = async () => {
-
-        // Call to API to get all matchs
-        await MATCH_SERVICE.getAllBySummoner(params.summonerName, player.region)
-        .then((response) => {
-            if(response.data.length > 0) {
-                setMatchs(response.data);
-            }
-        });
-
-    };
+        if (response.data.length > 0) {
+            setMatchs(response.data);
+        }
+    })
 
     useEffect(() => {
         document.title = `${params.summonerName} | Mapol: Map Of Legends`;
-
-        fetchSummoner();
-        fetchMatchs();
     }, []);
 
     let backgroundUrl = BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)];
@@ -119,6 +75,7 @@ const Player = () => {
                         {
                             matchs.map((match, index) => {
                                 return (
+                                    <Link key={index} to={ `/match-timeline/${match.match_id}` }>       
                                     <li className="match" key={ index }>
                                         <div className="match-info">
                                             <h3 className="gametype">{ match.general_data[0].game_type === 'MATCHED_GAME' ? 'Match classé solo' : 'undefined' }</h3>
@@ -170,6 +127,7 @@ const Player = () => {
                                             </div>
                                         </div>
                                     </li>
+                                    </Link>
                                 )
                             })
                         }

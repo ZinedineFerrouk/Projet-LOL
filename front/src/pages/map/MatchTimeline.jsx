@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";  
 import { useParams } from "react-router-dom";
 import MatchService from "../../services/MatchService";
 import "./MatchTimeline.scss";
@@ -16,7 +16,7 @@ const MatchTimeline = () => {
     let killInfosFormat = [];
     // Appeler la route API pour récupèrer les champions et le nom des invocateurs
 
-    matchService.getOneTimeline(params.match_id).then((res) => { 
+    matchService.getOneTimeline(params.match_id).then((res) => {   
       console.log(res.data);
       setMatchTimeline(res["data"][0]["frames"]);
 
@@ -44,7 +44,7 @@ const MatchTimeline = () => {
 
   return (
     <div className="page page-timeline">
-      <div className="container">
+      <div className="container"> 
         <div className="blue-team"></div>
 
         {/* TIMELINE MAP */}
