@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
-import axios from "axios";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./Player.scss";
 import { background1, background2, background3, background4, background5 } from '../../assets/img/background.js';
@@ -21,41 +20,7 @@ const Player = () => {
         background5
     ];
 
-    // FIXME: Fix call twice !!  
-
-    // const MyComponent = () => {
-    //     const [data, setData] = useState({});
-    
-    //     const loadData = useCallback(() => {
-    //         const fetchData = axios.get(`${process.env.REACT_APP_BASE_URL}/get-summoner/SPKTRA`).then(response => {return response.data;});
-            
-    //         return fetchData;
-            
-    //     }, []);
-        
-    //     useEffect(() => {
-    //         let dataLoaded = true;
-            
-    //         const reloadData = () => {
-    //             if(dataLoaded) {
-    //                 loadData().then(response => setData(response));
-    //             }
-    //         }
-            
-    //         reloadData();
-            
-            
-    //         //Clean up function
-    //         return () => {
-    //             dataLoaded = false;
-    //         }
-            
-    //     }, [loadData]);
-    //     return data;
-    // }
-
-    // let getData = MyComponent();
-    // console.log(getData);
+    // FIXME: Fix call twice !! 
 
     const fetchSummoner = async () => {
 
@@ -72,7 +37,7 @@ const Player = () => {
     const fetchMatchs = async () => {
 
         // Call to API to get all matchs
-        await MATCH_SERVICE.getAllBySummoner(params.summonerName, player.region)
+        await MATCH_SERVICE.getAllBySummoner([], player.region)
         .then((response) => {
             if(response.data.length > 0) {
                 setMatchs(response.data);
@@ -80,6 +45,7 @@ const Player = () => {
         });
 
     };
+
 
     useEffect(() => {
         document.title = `${params.summonerName} | Mapol: Map Of Legends`;

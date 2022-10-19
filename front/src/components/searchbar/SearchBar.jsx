@@ -12,15 +12,15 @@ const SearchBar = (props) => {
     const [inputText, setInputText] = useState('');
     const [playerIsEmpty, setPlayerIsEmpty] = useState(false);
 
-    const triggerInput = (e) => {
+    const triggerInput = async (e) => {
         if(e.target.value.length >= 3) {
             // Get input value and show results
             setInputText(e.target.value);
-            setHideResults(false);
             
             // call api
-            // FIXME: Get all summoners by name. NOT get one summoner by name
-            SUMMONER_SERVICE.getOneByName(e.target.value).then((res) => {
+            await SUMMONER_SERVICE.getOneByName(e.target.value).then((res) => {
+                setHideResults(false);
+                
                 if (res.data.length > 0) {
                     setPlayers(res.data);
                     setPlayerIsEmpty(false)
@@ -29,7 +29,6 @@ const SearchBar = (props) => {
                 }
             });
 
-            // if no response
         } else {
             setHideResults(true);
         }
