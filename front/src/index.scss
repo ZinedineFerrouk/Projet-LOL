@@ -20,7 +20,9 @@ VARIABLES
     --c-secondary: #2F3D4E;
     --c-secondary-rgb: 47, 61, 78;
     --c-secondary-darker: #212932;
+    --c-secondary-darker-rgb: 33, 41, 50;
     --c-black: #000;
+    --c-white-shade: #f6f7f8;
     --c-text: #fff;
     --c-text-shade: rgba(255, 255, 255, 0.6);
     --c-text-alt: #000;
@@ -52,6 +54,7 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: overlay;
 }
 h1,
 h2,
@@ -85,18 +88,18 @@ h6 {
     width: 12px;
 }
 body::-webkit-scrollbar-track {
-    background-color: var(--c-secondary);
+    background-color: transparent;
 }
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: var(--c-secondary-darker);
+    background-color: rgba(var(--c-secondary-darker-rgb), 0.75);
     border-radius: 50px;
     transition: var(--a-transition);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--c-black);
+    background-color: rgba(var(--c-secondary-darker-rgb), 2);
 }
 .container {
     width: 100%;
@@ -122,6 +125,7 @@ body::-webkit-scrollbar-track {
     background-color: var(--c-secondary);
     border: 1px solid var(--c-black);
     box-shadow: 5px 5px 35px -5px rgba(0, 0, 0, 0.25);
+    border: 3px solid var(--c-primary);
 
     .box-title {
         margin-bottom: 32px;

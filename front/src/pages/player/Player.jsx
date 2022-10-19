@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Player.scss";
 import { background1, background2, background3, background4, background5 } from '../../assets/img/background.js';
@@ -39,6 +38,7 @@ const Player = () => {
             setMatchs(response.data);
         }
     })
+
 
     useEffect(() => {
         document.title = `${params.summonerName} | Mapol: Map Of Legends`;
