@@ -10,48 +10,50 @@ const Map = () => {
   const timestamp = document.getElementById("timestamp");
 
   useEffect(() => {
-    console.log(map.className);
+    // console.log(map.className);
   }, [])
 
   //------------------------------------------------------------------------
-//   const t = setInterval(() => {
-//     let progressbar = document.getElementById("progressbar");
-//     let time = document.getElementById("progressbar").value;
-//     progressbar.setAttribute("value", time++);
+  const t = setInterval(() => {
+    let progressbar = document.getElementById("progressbar");
+    let time = document.getElementById("progressbar").value;
+    progressbar.setAttribute("value", time++);
 
-//     // this.updateProgressbar(time);
-//     if (time > progressbar.getAttribute("max")) {
-//       clearInterval(t);
-//     }
-//   }, 1000);
+    // this.updateProgressbar(time);
+    if (time > progressbar.getAttribute("max")) {
+      clearInterval(t);
+    }
+  }, 1000);
 
-//   const toggleMapStatus = () => {
-//     if (map.classList.contains("map-active")) {
-//       clearInterval(t);
-//     } else {
-//       let time = progressbar.getAttribute("value");
-//       // progressingbar(time);
-//     }
-//     map.classList.toggle("map-active");
-//   };
+  const toggleMapStatus = () => {
+    if (map.current) {
+      if (map.current.classList.contains("map-active")) {
+        // clearInterval(t);
+      } else {
+        let time = progressbar.value;
+        progressingbar(time);
+      }
+      map.current.classList.toggle("map-active");
+    }
+  };
 
-  // progressingbar = (time) => {
-  //     t = setInterval(() => {
-  //         progressbar.setAttribute('value',time++);
-  //         updateProgressbar(time);
-  //         if (time > progressbar.getAttribute('max')) {
-  //             clearInterval(t);
-  //         }
-  //     },1000)
-  // }
+  const progressingbar = (time) => {
+    setInterval(() => {
+      progressbar.setAttribute('value', time++);
+      // updateProgressbar(time);
+      if (time > progressbar.getAttribute('max')) {
+        clearInterval(t);
+      }
+    }, 1000)
+  }
 
-  // updatePlayIcon = () => {
-  //     if (!map.classList.contains("map-active")) {
-  //         playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  //     } else {
-  //         playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-  //     }
-  // }
+  const updatePlayIcon = () => {
+      if (!map.current.classList.contains("map-active")) {
+          playBtn.innerHTML = '<i class="fas fa-play"></i>';
+      } else {
+          playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }
+  }
 
   // stopMap = () => {
   //     if (map.classList.contains("map-active")) {
@@ -102,7 +104,7 @@ const Map = () => {
         <img ref={map} id="map" className="lol_map" src={match_map} />
 
         <div className="controls">
-          <button className="btn" id="play">
+          <button onClick={toggleMapStatus} className="btn" id="play">
             <i className="ri-play-line"></i>
           </button>
           <button className="btn" id="stop">
