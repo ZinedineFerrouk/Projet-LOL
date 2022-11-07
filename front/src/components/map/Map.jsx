@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import match_map from "../../assets/img/match-map.webp";
 
 const Map = () => {
@@ -8,82 +8,65 @@ const Map = () => {
   const mapmoment = document.getElementById("mapmoment");
   const progressbar = document.getElementById("progressbar");
   const timestamp = document.getElementById("timestamp");
+  const [currentTime, setCurrentTime] = useState(0);
+  const interval = useRef(null);
 
   useEffect(() => {
-    // console.log(map.className);
-  }, [])
-
-  //------------------------------------------------------------------------
-  const t = setInterval(() => {
-    let progressbar = document.getElementById("progressbar");
-    let time = document.getElementById("progressbar").value;
-    progressbar.setAttribute("value", time++);
-
-    // this.updateProgressbar(time);
-    if (time > progressbar.getAttribute("max")) {
-      clearInterval(t);
-    }
-  }, 1000);
+    
+  }, []);
 
   const toggleMapStatus = () => {
-    if (map.current) {
-      if (map.current.classList.contains("map-active")) {
-        // clearInterval(t);
-      } else {
-        let time = progressbar.value;
-        progressingbar(time);
-      }
-      map.current.classList.toggle("map-active");
+    const MAX = progressbar.getAttribute('max');
+    
+    if(map.current.classList.contains("map-active")) {
+      map.current.classList.remove("map-active");
+      updatePlayIcon();
+      clearInterval(interval.current);
+    } else {
+      map.current.classList.add("map-active");
+      updatePlayIcon();
+      interval.current = setInterval(() => {
+        setCurrentTime((prev) => {
+          if(prev >= +MAX) {
+            map.current.classList.remove("map-active");
+            clearInterval(interval.current);
+          }
+          return prev + 1;
+        });
+      }, 1000)
     }
   };
 
-  const progressingbar = (time) => {
-    setInterval(() => {
-      progressbar.setAttribute('value', time++);
-      // updateProgressbar(time);
-      if (time > progressbar.getAttribute('max')) {
-        clearInterval(t);
-      }
-    }, 1000)
+  const stopMap = () => {
+    map.current.classList.remove("map-active");
+    clearInterval(interval.current);
+    setCurrentTime(0);
+    updatePlayIcon();
   }
 
   const updatePlayIcon = () => {
-      if (!map.current.classList.contains("map-active")) {
-          playBtn.innerHTML = '<i class="fas fa-play"></i>';
-      } else {
-          playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      }
+    const ICON = document.getElementById('play-icon');
+
+    if (!map.current.classList.contains("map-active")) {
+      ICON.classList.remove("ri-pause-line");
+      ICON.classList.add("ri-play-line");
+    } else {
+      ICON.classList.remove("ri-play-line");
+      ICON.classList.add("ri-pause-line");
+    }
   }
 
-  // stopMap = () => {
-  //     if (map.classList.contains("map-active")) {
-  //         map.classList.toggle("map-active");
-  //     }
-  //     clearInterval(t);
-  //     progressbar.setAttribute('value', "0");
-  //     updateProgressbar(0);
-  // }
+  const dragProgressbar = (e) => {
+    const PROGRESS = e.target;
 
-  // updateProgressbar = (time) => {
-  //     // AFFICHAGE TIME
-  //     let min = Math.floor(time / 60);
-  //     let sec = Math.floor(time - min * 60);
-
-  //     if (min < 10) {
-  //         min = '0' + String(min);
-  //     }
-  //     if (sec < 10) {
-  //         sec = '0' + String(sec);
-  //     }
-  //     timestamp.innerText = `${min}:${sec}`;
-  //     // FIN AFFICHAGE
-  // }
-
-  // dragProgressbar = () => {
-  //     // console.log('hello');
-  //     console.log(progressbar.value);
-  // }
-
+    if (map.current.classList.contains("map-active")) {
+      map.current.classList.remove("map-active");
+      clearInterval(interval.current);
+      updatePlayIcon();
+    }
+    setCurrentTime(PROGRESS.value);
+  }
+  
   return (
     <div className="container">
       {/* TIMELINE MAP */}
@@ -104,10 +87,10 @@ const Map = () => {
         <img ref={map} id="map" className="lol_map" src={match_map} />
 
         <div className="controls">
-          <button onClick={toggleMapStatus} className="btn" id="play">
-            <i className="ri-play-line"></i>
+          <button onClick={ toggleMapStatus } className="btn" id="play">
+            <i id="play-icon" className="ri-play-line"></i>
           </button>
-          <button className="btn" id="stop">
+          <button onClick={ stopMap } className="btn" id="stop">
             <i className="ri-stop-line"></i>
           </button>
           <input
@@ -115,12 +98,13 @@ const Map = () => {
             className="progressbar"
             id="progressbar"
             min="0"
-            max="120"
-            value="0"
+            max="10"
+            value={ currentTime }
+            onChange={ dragProgressbar }
           />
 
           <span className="timestamp" id="timestamp">
-            00:00
+          { Math.floor(currentTime / 60) + ":" + (currentTime % 60 ? (currentTime % 60 <= 9 ? '0' + currentTime % 60 : currentTime % 60) : '00') }
           </span>
         </div>
       </div>
