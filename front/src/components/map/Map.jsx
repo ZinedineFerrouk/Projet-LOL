@@ -1,18 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import match_map from "../../assets/img/match-map.webp";
 
-const Map = () => {
-  const playBtn = document.getElementById("play");
-  const stopBtn = document.getElementById("stop");
+const Map = (props) => {
+  
   const map = useRef(null);
-  const mapmoment = document.getElementById("mapmoment");
   const progressbar = document.getElementById("progressbar");
-  const timestamp = document.getElementById("timestamp");
   const [currentTime, setCurrentTime] = useState(0);
   const interval = useRef(null);
 
   useEffect(() => {
-    
+    console.log('test', props);
   }, []);
 
   const toggleMapStatus = () => {
