@@ -4,7 +4,8 @@
     width: 100%;
     top: 0;
     z-index: 99;
-    background-color: var(--c-white-shade);
+    background-color: rgba(190, 190, 190, 0.85);
+    backdrop-filter: blur(5px);
     box-shadow: 5px 5px 35px -5px rgb(0 0 0 / 25%);
 
     .back {

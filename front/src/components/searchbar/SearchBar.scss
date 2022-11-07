@@ -66,6 +66,8 @@
                 border-radius: 50%;
                 overflow: hidden;
                 border: 2px solid var(--c-primary);
+                outline: 1px solid var(--c-primary-darker);
+                outline-offset: 2px;
 
                 img {
                     object-fit: cover;
@@ -73,6 +75,7 @@
                 }
             }
             .player-content {
+                
                 p {
                     display: inline-block;
                     color: var(--c-text);
@@ -86,6 +89,18 @@
                     margin-right: auto;
                     font-weight: lighter;
                     color: var(--c-text-shade);
+                }
+            }
+            &.loading {
+                .player-icon {
+                    position: relative;
+                    
+                    .img {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
                 }
             }
         }
