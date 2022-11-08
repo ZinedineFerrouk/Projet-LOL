@@ -11,6 +11,7 @@ import Map from "../../components/map/Map.jsx";
 const MatchTimeline = () => {
   const [matchTimeline, setMatchTimeline] = useState({});
   const [killInfos, setkillInfos] = useState([]);
+  const [wardInfos, setWardInfos] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false)
   const [totalGameTime, setTotalGameTime] = useState(0);
   const params = useParams();
@@ -18,6 +19,7 @@ const MatchTimeline = () => {
   const UTILS_SERVICE = new UtilsService();
 
   let killInfosFormat = [];
+  let wardInfosFormat = [];
   useQuery(["match"], async () => {
     /// Call to API to get timeline of a match
     const response = await MATCH_SERVICE.getOneTimeline(params.match_id);
@@ -32,24 +34,41 @@ const MatchTimeline = () => {
         );
       }
     }
-      console.log(totalGameTime);
-      // for (let i = 0; i < matchTimeline.length; i++) {
-      //   for (let j = 0; j < matchTimeline[i].events.length; j++) {
-      //     if (matchTimeline[i].events[j].type === "CHAMPION_KILL") {
-      //       killInfosFormat.push({
-      //         type: matchTimeline[i].events[j].type,
-      //         timestamp: matchTimeline[i].events[j].timestamp,
-      //         killerId: matchTimeline[i].events[j].killerId,
-      //         victimId: matchTimeline[i].events[j].victimId,
-      //         position: matchTimeline[i].events[j].position,
-      //       });
-      //     }
-      //   }
-      // }
+      for (let i = 0; i < matchTimeline.length; i++) {
+        const element = matchTimeline[i].events;
+        for (let j = 0; j < element.length; j++) {
+          if (element[j].type === "CHAMPION_KILL") {
+            killInfosFormat.push({
+              type: element[j].type,
+              timestamp: element[j].timestamp,
+              killerId: element[j].killerId,
+              victimId: element[j].victimId,
+              position: element[j].position,
+            });
+          }
 
-      // if(killInfos.length === 0){
-      //   setkillInfos(killInfosFormat);
-      // }
+          if (element[j].type === "WARD_PLACED") {
+            wardInfosFormat.push({
+              type: element[j].type,
+              timestamp: element[j].timestamp,
+              creatorId: element[j].creatorId,
+              wardType: element[j].wardType,
+            });
+          }
+          
+        }
+      }
+
+      if(killInfos.length === 0){
+        setkillInfos(killInfosFormat);
+      }
+
+      if(wardInfos.length === 0){
+        setWardInfos(wardInfosFormat);
+      }
+
+      console.log(wardInfosFormat);
+      console.log(killInfosFormat);
   });
 
   useEffect(() => {
@@ -59,7 +78,7 @@ const MatchTimeline = () => {
   return (
     <div className="page page-timeline">
       { 
-        isLoaded && <Map gameDuration={totalGameTime} /> 
+        isLoaded && <Map killInfos={killInfosFormat} gameDuration={totalGameTime} /> 
       }
     </div>
   );

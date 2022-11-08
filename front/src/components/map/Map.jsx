@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import match_map from "../../assets/img/match-map.webp";
 
 const Map = (props) => {
-  
+  const killInfos = props.killInfos
   const map = useRef(null);
   const progressbar = document.getElementById("progressbar");
   const [currentTime, setCurrentTime] = useState(0);
@@ -68,7 +68,7 @@ const Map = (props) => {
     <div className="container">
       {/* TIMELINE MAP */}
       <div className="map">
-        {/* {killInfos.map((info, index) => {
+        {killInfos.map((info, index) => {
             return (
               <div
                 key={index}
@@ -79,7 +79,7 @@ const Map = (props) => {
                 }}
               ></div>
             );
-          })} */}
+          })}
 
         <img ref={map} id="map" className="lol_map" src={match_map} />
 
