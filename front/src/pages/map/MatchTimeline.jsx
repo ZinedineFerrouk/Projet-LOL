@@ -5,7 +5,6 @@ import MatchService from "../../services/MatchService";
 import "./MatchTimeline.scss";
 import { useQuery } from "react-query";
 import UtilsService from "../../services/Utils";
-import MapService from "../../services/MapService";
 import Map from "../../components/map/Map.jsx";
 
 const MatchTimeline = () => {
@@ -34,6 +33,7 @@ const MatchTimeline = () => {
         );
       }
     }
+    console.log(matchTimeline);
       for (let i = 0; i < matchTimeline.length; i++) {
         const element = matchTimeline[i].events;
         for (let j = 0; j < element.length; j++) {
@@ -67,8 +67,8 @@ const MatchTimeline = () => {
         setWardInfos(wardInfosFormat);
       }
 
-      console.log(wardInfosFormat);
-      console.log(killInfosFormat);
+      // console.log(wardInfosFormat);
+      // console.log(killInfosFormat);
   });
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const MatchTimeline = () => {
   return (
     <div className="page page-timeline">
       { 
-        isLoaded && <Map killInfos={killInfosFormat} gameDuration={totalGameTime} /> 
+        isLoaded && <Map killInfos={killInfos} gameDuration={totalGameTime} /> 
       }
     </div>
   );

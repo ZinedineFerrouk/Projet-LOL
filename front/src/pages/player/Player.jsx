@@ -21,6 +21,8 @@ const Player = () => {
         document.title = `${params.summonerName} | Mapol: Map Of Legends`;
     }, []);
 
+    let playersByMatch = [];
+
     // Get player data
     useQuery(["player"], async () => {
         const response = await SUMMONER_SERVICE.getOneByName(params.summonerName);
@@ -41,7 +43,15 @@ const Player = () => {
         }
     })
 
+    for (let i = 0; i < matchs.length; i++) {
+        const playerData = matchs[i].general_data[0].champions;
 
+        playersByMatch.push({
+            playersData: playerData
+        });
+    }
+
+    console.log(playersByMatch);
     return (
         <div className="page page-player" style={{
             backgroundImage: `linear-gradient(45deg, var(--c-secondary), var(--c-secondary-darker))`,

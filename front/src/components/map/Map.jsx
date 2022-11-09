@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import match_map from "../../assets/img/match-map.webp";
+import match_map from "../../assets/img/lol_map.webp";
 
 const Map = (props) => {
   const killInfos = props.killInfos
@@ -7,10 +7,6 @@ const Map = (props) => {
   const progressbar = document.getElementById("progressbar");
   const [currentTime, setCurrentTime] = useState(0);
   const interval = useRef(null);
-
-  useEffect(() => {
-    console.log('test', props);
-  }, []);
 
   const toggleMapStatus = () => {
     const MAX = progressbar.getAttribute('max');
