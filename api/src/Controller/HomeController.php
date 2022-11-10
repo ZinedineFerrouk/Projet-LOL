@@ -15,7 +15,9 @@ class HomeController extends AbstractController
     public function index(RouterInterface $router): JsonResponse
     {
         foreach ($router->getRouteCollection()->all() as $route_name => $route) {
-            $this->routes[$route_name] = $route->getPath();
+            if(!str_starts_with($route_name, '_')) {
+                $this->routes[$route_name] = $route->getPath();
+            }
         }
 
         return $this->json([
