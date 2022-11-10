@@ -1,0 +1,1314 @@
+{
+    "events": [
+        {
+        "type": "LEVEL_UP",
+        "level": 10,
+        "timestamp": 722031,
+        "participantId": 8
+        },
+        {
+        "type": "SKILL_LEVEL_UP",
+        "skillSlot": 2,
+        "timestamp": 722725,
+        "levelUpType": "NORMAL",
+        "participantId": 8
+        },
+        {
+        "type": "TURRET_PLATE_DESTROYED",
+        "teamId": 100,
+        "killerId": 8,
+        "laneType": "MID_LANE",
+        "position": {
+        "x": 5846,
+        "y": 6396
+        },
+        "timestamp": 724674
+        },
+        {
+        "type": "ITEM_PURCHASED",
+        "itemId": 1036,
+        "timestamp": 727581,
+        "participantId": 7
+        },
+        {
+        "type": "ITEM_DESTROYED",
+        "itemId": 1036,
+        "timestamp": 728968,
+        "participantId": 4
+        },
+        {
+        "type": "ITEM_PURCHASED",
+        "itemId": 3133,
+        "timestamp": 728968,
+        "participantId": 4
+        },
+        {
+        "type": "TURRET_PLATE_DESTROYED",
+        "teamId": 100,
+        "killerId": 8,
+        "laneType": "MID_LANE",
+        "position": {
+        "x": 5846,
+        "y": 6396
+        },
+        "timestamp": 729001
+        },
+        {
+        "type": "ITEM_UNDO",
+        "afterId": 0,
+        "beforeId": 3133,
+        "goldGain": 750,
+        "timestamp": 729859,
+        "participantId": 4
+        },
+        {
+        "type": "ITEM_DESTROYED",
+        "itemId": 1036,
+        "timestamp": 731808,
+        "participantId": 4
+        },
+        {
+        "type": "ITEM_PURCHASED",
+        "itemId": 3035,
+        "timestamp": 731808,
+        "participantId": 4
+        },
+        {
+        "type": "WARD_KILL",
+        "killerId": 10,
+        "wardType": "SIGHT_WARD",
+        "timestamp": 736332
+        },
+        {
+        "type": "WARD_PLACED",
+        "wardType": "SIGHT_WARD",
+        "creatorId": 5,
+        "timestamp": 736728
+        },
+        {
+        "type": "WARD_PLACED",
+        "wardType": "YELLOW_TRINKET",
+        "creatorId": 6,
+        "timestamp": 748883
+        },
+        {
+        "type": "CHAMPION_KILL",
+        "bounty": 219,
+        "killerId": 6,
+        "position": {
+        "x": 10009,
+        "y": 4055
+        },
+        "victimId": 2,
+        "timestamp": 760874,
+        "shutdownBounty": 0,
+        "killStreakLength": 3,
+        "victimDamageDealt": [
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "mordekaiserpassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 33,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "mordekaisere",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 24,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "mordekaiserpassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 318,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "mordekaiserq",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 202,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 30,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "mordekaiserbasicattack2",
+        "spellSlot": 65,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 6,
+        "physicalDamage": 76
+        }
+        ],
+        "victimDamageReceived": [
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 164,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "seismicshard",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 178,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "obduracy",
+        "spellSlot": 1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 6,
+        "physicalDamage": 97
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 46,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "malphitebasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 6,
+        "physicalDamage": 111
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "malphitebasicattack2",
+        "spellSlot": 65,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 6,
+        "physicalDamage": 55
+        },
+        {
+        "name": "SRU_Dragon_Earth",
+        "type": "MONSTER",
+        "basic": true,
+        "spellName": "sru_dragon_mountain_attack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 0,
+        "physicalDamage": 504
+        }
+        ]
+        },
+        {
+        "type": "LEVEL_UP",
+        "level": 8,
+        "timestamp": 763549,
+        "participantId": 9
+        },
+        {
+        "type": "ELITE_MONSTER_KILL",
+        "bounty": 0,
+        "killerId": 8,
+        "position": {
+        "x": 9866,
+        "y": 4414
+        },
+        "timestamp": 763549,
+        "monsterType": "DRAGON",
+        "killerTeamId": 200,
+        "monsterSubType": "EARTH_DRAGON",
+        "assistingParticipantIds": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        10,
+        6,
+        10
+        ]
+        },
+        {
+        "type": "SKILL_LEVEL_UP",
+        "skillSlot": 1,
+        "timestamp": 764672,
+        "levelUpType": "NORMAL",
+        "participantId": 9
+        },
+        {
+        "type": "CHAMPION_KILL",
+        "bounty": 300,
+        "killerId": 4,
+        "position": {
+        "x": 10738,
+        "y": 4839
+        },
+        "victimId": 6,
+        "timestamp": 767347,
+        "shutdownBounty": 300,
+        "killStreakLength": 2,
+        "victimDamageDealt": [
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "seismicshard",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 178,
+        "participantId": 2,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "landslide",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 233,
+        "participantId": 3,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "malphitebasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 56
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 122,
+        "participantId": 5,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "obduracy",
+        "spellSlot": 1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 5,
+        "physicalDamage": 96
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "malphitebasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 5,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 38,
+        "participantId": 5,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "landslide",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 58,
+        "participantId": 5,
+        "physicalDamage": 0
+        }
+        ],
+        "victimDamageReceived": [
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "mordekaiserpassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 33,
+        "participantId": 2,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "mordekaisere",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 24,
+        "participantId": 2,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "mordekaiserpassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 331,
+        "participantId": 2,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "mordekaiserq",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 202,
+        "participantId": 2,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 30,
+        "participantId": 2,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Mordekaiser",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "mordekaiserbasicattack2",
+        "spellSlot": 65,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 2,
+        "physicalDamage": 76
+        },
+        {
+        "name": "Nautilus",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "nautiluspassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 5,
+        "physicalDamage": 31
+        },
+        {
+        "name": "Nautilus",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "nautiluspiercinggaze",
+        "spellSlot": 1,
+        "trueDamage": 0,
+        "magicDamage": 76,
+        "participantId": 5,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Nautilus",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "nautiluspiercinggaze",
+        "spellSlot": 1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 5,
+        "physicalDamage": 130
+        },
+        {
+        "name": "Nautilus",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "nautilussplashzone",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 65,
+        "participantId": 5,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Nautilus",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "nautiluspassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 5,
+        "physicalDamage": 50
+        },
+        {
+        "name": "Nautilus",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "nautilusanchordrag",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 119,
+        "participantId": 5,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "camilleq2",
+        "spellSlot": 0,
+        "trueDamage": 145,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 27
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "camilleedash2",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 58
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "camillebasicattack2",
+        "spellSlot": 65,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 50
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 59,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 47
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "camillebasicattack3",
+        "spellSlot": 66,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 50
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 30,
+        "participantId": 3,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "camillebasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 50
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "camilleq",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 68
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "camillebasicattack4",
+        "spellSlot": 67,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 50
+        },
+        {
+        "name": "SRU_Dragon_Earth",
+        "type": "MONSTER",
+        "basic": true,
+        "spellName": "sru_dragon_mountain_attack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 0,
+        "physicalDamage": 81
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "missfortunepassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 78
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "missfortunepassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 13
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "missfortunericochetshot",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 123
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 89,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 0
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 46
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "burning",
+        "spellSlot": -1,
+        "trueDamage": 18,
+        "magicDamage": 0,
+        "participantId": 7,
+        "physicalDamage": 0
+        }
+        ],
+        "assistingParticipantIds": [
+        2,
+        3,
+        5
+        ]
+        },
+        {
+        "type": "LEVEL_UP",
+        "level": 8,
+        "timestamp": 767347,
+        "participantId": 2
+        },
+        {
+        "type": "CHAMPION_KILL",
+        "bounty": 219,
+        "killerId": 8,
+        "position": {
+        "x": 9498,
+        "y": 3459
+        },
+        "victimId": 3,
+        "timestamp": 769263,
+        "shutdownBounty": 0,
+        "killStreakLength": 2,
+        "victimDamageDealt": [
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 8,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 8,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "camilleq",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 8,
+        "physicalDamage": 48
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 59,
+        "magicDamage": 0,
+        "participantId": 9,
+        "physicalDamage": 16
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "camilleq2",
+        "spellSlot": 0,
+        "trueDamage": 145,
+        "magicDamage": 0,
+        "participantId": 9,
+        "physicalDamage": 39
+        }
+        ],
+        "victimDamageReceived": [
+        {
+        "name": "SRU_Dragon_Earth",
+        "type": "MONSTER",
+        "basic": true,
+        "spellName": "sru_dragon_mountain_attack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 0,
+        "physicalDamage": 273
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "landslide",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 233,
+        "participantId": 6,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Malphite",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "malphitebasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 6,
+        "physicalDamage": 56
+        },
+        {
+        "name": "Vayne",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "vaynetumble",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 9,
+        "physicalDamage": 96
+        },
+        {
+        "name": "Vayne",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "vaynetumble",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 9,
+        "physicalDamage": 313
+        },
+        {
+        "name": "Vayne",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "vaynecondemn",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 9,
+        "physicalDamage": 143
+        },
+        {
+        "name": "Vayne",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "vaynesilveredbolts",
+        "spellSlot": 1,
+        "trueDamage": 153,
+        "magicDamage": 0,
+        "participantId": 9,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Vayne",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "vaynebasicattack2",
+        "spellSlot": 65,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 9,
+        "physicalDamage": 80
+        },
+        {
+        "name": "Sona",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "sonar",
+        "spellSlot": 3,
+        "trueDamage": 0,
+        "magicDamage": 127,
+        "participantId": 10,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Sona",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 18,
+        "participantId": 10,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Sona",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "sonaq",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 51,
+        "participantId": 10,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "dianateleport",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 77,
+        "participantId": 8,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 8,
+        "physicalDamage": 18
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "dianaorbs",
+        "spellSlot": 1,
+        "trueDamage": 0,
+        "magicDamage": 40,
+        "participantId": 8,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "dianabasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 8,
+        "physicalDamage": 48
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "dianabasicattack2",
+        "spellSlot": 65,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 8,
+        "physicalDamage": 48
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "dianaq",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 200,
+        "participantId": 8,
+        "physicalDamage": 0
+        }
+        ],
+        "assistingParticipantIds": [
+        6,
+        9,
+        10
+        ]
+        },
+        {
+        "type": "WARD_PLACED",
+        "wardType": "YELLOW_TRINKET",
+        "creatorId": 9,
+        "timestamp": 770121
+        },
+        {
+        "type": "WARD_PLACED",
+        "wardType": "SIGHT_WARD",
+        "creatorId": 5,
+        "timestamp": 773093
+        },
+        {
+        "type": "CHAMPION_KILL",
+        "bounty": 300,
+        "killerId": 1,
+        "position": {
+        "x": 10652,
+        "y": 3415
+        },
+        "victimId": 8,
+        "timestamp": 775570,
+        "shutdownBounty": 150,
+        "killStreakLength": 1,
+        "victimDamageDealt": [
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 1,
+        "physicalDamage": 17
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "dianapassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 97,
+        "participantId": 1,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "dianabasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 1,
+        "physicalDamage": 47
+        },
+        {
+        "name": "Diana",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "dianabasicattack3",
+        "spellSlot": 66,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 1,
+        "physicalDamage": 47
+        }
+        ],
+        "victimDamageReceived": [
+        {
+        "name": "Nautilus",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "nautilussplashzone",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 5,
+        "physicalDamage": 0
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "missfortunericochetshot",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 177
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 89,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 0
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "missfortunescattershot",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 0
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "missfortunepassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 320
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "missfortunepassive",
+        "spellSlot": 63,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 165
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "missfortunebasicattack",
+        "spellSlot": 64,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 112
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 4,
+        "physicalDamage": 66
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Camille",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "camilleq",
+        "spellSlot": 0,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 3,
+        "physicalDamage": 48
+        },
+        {
+        "name": "Chogath",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "feralscream",
+        "spellSlot": 1,
+        "trueDamage": 0,
+        "magicDamage": 96,
+        "participantId": 1,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Chogath",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "feast",
+        "spellSlot": 3,
+        "trueDamage": 389,
+        "magicDamage": 0,
+        "participantId": 1,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Chogath",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 23,
+        "participantId": 1,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Chogath",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "vorpalspikes",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 61,
+        "participantId": 1,
+        "physicalDamage": 0
+        },
+        {
+        "name": "Chogath",
+        "type": "OTHER",
+        "basic": true,
+        "spellName": "vorpalspikes",
+        "spellSlot": 2,
+        "trueDamage": 0,
+        "magicDamage": 0,
+        "participantId": 1,
+        "physicalDamage": 60
+        },
+        {
+        "name": "Chogath",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "",
+        "spellSlot": -1,
+        "trueDamage": 0,
+        "magicDamage": 45,
+        "participantId": 1,
+        "physicalDamage": 0
+        },
+        {
+        "name": "MissFortune",
+        "type": "OTHER",
+        "basic": false,
+        "spellName": "burning",
+        "spellSlot": -1,
+        "trueDamage": 36,
+        "magicDamage": 0,
+        "participantId": 7,
+        "physicalDamage": 0
+        }
+        ],
+        "assistingParticipantIds": [
+        3,
+        4,
+        5
+        ]
+        },
+        {
+        "type": "LEVEL_UP",
+        "level": 10,
+        "timestamp": 775570,
+        "participantId": 1
+        },
+        {
+        "type": "ITEM_DESTROYED",
+        "itemId": 2055,
+        "timestamp": 777981,
+        "participantId": 4
+        },
+        {
+        "type": "WARD_PLACED",
+        "wardType": "CONTROL_WARD",
+        "creatorId": 4,
+        "timestamp": 777981
+        },
+        {
+        "type": "ITEM_PURCHASED",
+        "itemId": 1033,
+        "timestamp": 778509,
+        "participantId": 2
+        },
+        {
+        "type": "ITEM_PURCHASED",
+        "itemId": 1029,
+        "timestamp": 778939,
+        "participantId": 2
+        },
+        {
+        "type": "SKILL_LEVEL_UP",
+        "skillSlot": 2,
+        "timestamp": 779863,
+        "levelUpType": "NORMAL",
+        "participantId": 1
+        }
+    ]
+}

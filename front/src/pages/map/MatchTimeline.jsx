@@ -7,10 +7,13 @@ import { useQuery } from "react-query";
 import UtilsService from "../../services/Utils";
 import MapService from "../../services/MapService";
 import Map from "../../components/map/Map.jsx";
+import EventList from "../../components/eventList/EventList";
+import EventFaker from '../../fakes/Events.fake.json';
 
 const MatchTimeline = () => {
     const [matchTimeline, setMatchTimeline] = useState({});
     const [killInfos, setkillInfos] = useState([]);
+    const [events, setEvents] = useState([]);
     const params = useParams();
     const MATCH_SERVICE = new MatchService();
     const UTILS_SERVICE = new UtilsService();
@@ -31,6 +34,8 @@ const MatchTimeline = () => {
     });
 
     useEffect(() => {
+        setEvents(EventFaker.events);
+        
         document.title = "Résumé | Mapol : Map Of Legends";
     }, []);
 
@@ -43,6 +48,7 @@ const MatchTimeline = () => {
                 </div>
                 <div className="events-box box">
                     <h2 className="box-title">Évènements</h2>
+                    <EventList events={ events } />
                 </div>
                 <div className="teams-box box">
                     <h2 className="box-title">Participants</h2>
