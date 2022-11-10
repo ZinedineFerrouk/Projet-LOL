@@ -23,8 +23,8 @@ export default class MatchService {
    * @param {string} id The match's ID
    * @returns 
    */
-  getOneTimeline(id) {
-    return axios.get(`${URL}/get-match-timeline/${id}`);
+  getAllDataFromOneGame(id) {
+    return axios.get(`${URL}/get-match-details/${id}`);
   }
 
 }

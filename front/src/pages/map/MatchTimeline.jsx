@@ -21,11 +21,12 @@ const MatchTimeline = () => {
   let wardInfosFormat = [];
   useQuery(["match"], async () => {
     /// Call to API to get timeline of a match
-    const response = await MATCH_SERVICE.getOneTimeline(params.match_id);
+    const response = await MATCH_SERVICE.getAllDataFromOneGame(params.match_id);
 
-    if (response.data) {
+    if (response) {
       setIsLoaded(true);
-      setMatchTimeline(response.data[0].frames);
+      console.log(response.data.timeline);
+      setMatchTimeline(response.data.timeline);
       
       for (let i = 0; i < matchTimeline.length; i++) {
         setTotalGameTime(
@@ -33,42 +34,6 @@ const MatchTimeline = () => {
         );
       }
     }
-    console.log(matchTimeline);
-      for (let i = 0; i < matchTimeline.length; i++) {
-        const element = matchTimeline[i].events;
-        for (let j = 0; j < element.length; j++) {
-          if (element[j].type === "CHAMPION_KILL") {
-            killInfosFormat.push({
-              type: element[j].type,
-              timestamp: element[j].timestamp,
-              killerId: element[j].killerId,
-              victimId: element[j].victimId,
-              position: element[j].position,
-            });
-          }
-
-          if (element[j].type === "WARD_PLACED") {
-            wardInfosFormat.push({
-              type: element[j].type,
-              timestamp: element[j].timestamp,
-              creatorId: element[j].creatorId,
-              wardType: element[j].wardType,
-            });
-          }
-          
-        }
-      }
-
-      if(killInfos.length === 0){
-        setkillInfos(killInfosFormat);
-      }
-
-      if(wardInfos.length === 0){
-        setWardInfos(wardInfosFormat);
-      }
-
-      // console.log(wardInfosFormat);
-      // console.log(killInfosFormat);
   });
 
   useEffect(() => {

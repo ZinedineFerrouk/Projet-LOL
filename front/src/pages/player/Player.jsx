@@ -51,7 +51,6 @@ const Player = () => {
         });
     }
 
-    console.log(playersByMatch);
     return (
         <div className="page page-player" style={{
             backgroundImage: `linear-gradient(45deg, var(--c-secondary), var(--c-secondary-darker))`,
