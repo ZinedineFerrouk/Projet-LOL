@@ -206,4 +206,32 @@ class ApiController extends AbstractController
 
         return new JsonResponse($matchTimeline);
     }
+
+    #[Route('/get-match-details/{match_id}', name: 'get-match-details')]
+    public function getMatchDetails($match_id)
+    {
+        $match = $this->matchsRepository->findOneBy(["match_id" => $match_id]);
+
+        if ($match) {
+            $matchDetails = $match->getData();
+            $matchGeneralData = $match->getGeneralData();
+
+            $formattedDataMatch = [];
+            for ($i = 0; $i < count($matchGeneralData[0]['champions']); $i++) {
+                $formattedDataMatch['playersInfo'][] = [
+                    'kda' => $matchGeneralData[0]['champions'][$i]['kda'],
+                    'win' => $matchGeneralData[0]['champions'][$i]['win'],
+                    'puuid' => $matchGeneralData[0]['champions'][$i]['puuid'],
+                    'region' => $matchGeneralData[0]['champions'][$i]['region'],
+                    'teamId' => $matchGeneralData[0]['champions'][$i]['teamId'],
+                    'championName' => $matchGeneralData[0]['champions'][$i]['championName'],
+                    'summonerName' => $matchGeneralData[0]['champions'][$i]['summonerName'],
+                    'participantId' => $matchDetails[0]['participants'][$i]['participantId'],
+                ];
+            }
+        }
+        $formattedDataMatch['timeline'] = ['frames' => $matchDetails[0]['frames']];
+
+        return new JsonResponse($formattedDataMatch);
+    }
 }

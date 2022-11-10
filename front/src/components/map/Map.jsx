@@ -78,7 +78,7 @@ const Map = () => {
   return (
     <div className="map__container">
         <div className="map__image">
-        {killInfos.map((info, index) => {
+        {/* {killInfos.map((info, index) => {
             return (
               <div
                 key={index}
@@ -89,7 +89,7 @@ const Map = () => {
                 }}
               ></div>
             );
-          })}
+          })} */}
             <img ref={ map } id="map" className="lol_map" src={match_map} />
         </div>
         <div className="map__controls">

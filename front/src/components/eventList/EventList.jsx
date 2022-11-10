@@ -22,7 +22,7 @@ const EventList = (props) => {
     }
 
     useEffect(() => {
-       
+        
     }, []);
     
 

@@ -15,10 +15,11 @@ const MatchTimeline = () => {
   const [wardInfos, setWardInfos] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false)
   const [totalGameTime, setTotalGameTime] = useState(0);
+  const [events, setEvents] = useState({});
   const params = useParams();
   const MATCH_SERVICE = new MatchService();
   const UTILS_SERVICE = new UtilsService();
-
+  
   let killInfosFormat = [];
   let wardInfosFormat = [];
   useQuery(["match"], async () => {
@@ -27,7 +28,7 @@ const MatchTimeline = () => {
 
     if (response) {
       setIsLoaded(true);
-      console.log(response.data.timeline);
+      
       setMatchTimeline(response.data.timeline);
       
       for (let i = 0; i < matchTimeline.length; i++) {
@@ -49,11 +50,15 @@ const MatchTimeline = () => {
             <div className="container page-timeline__grid">
                 <div className="map-box box">
                     <h2 className="box-title">Résumé du match</h2>
-                    <Map />
+                    {
+                        isLoaded && <Map />
+                    }
                 </div>
                 <div className="events-box box">
                     <h2 className="box-title">Évènements</h2>
-                    <EventList events={ events } />
+                    {
+                        isLoaded && <EventList events={ events } />
+                    }
                 </div>
                 <div className="teams-box box">
                     <h2 className="box-title">Participants</h2>
