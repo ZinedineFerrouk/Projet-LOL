@@ -1,0 +1,82 @@
+.map__container {
+    .map__image {
+        border-radius: 16px 16px 0 0;
+        width: 100%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    .map__controls {
+        padding: 8px;
+        background-color: #000;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 0 0 16px 16px;
+
+        .buttons {
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            button {
+                padding: 3px;
+                opacity: 0.75;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+        input[type=range] {
+            flex: 1;
+            accent-color: var(--c-primary);
+            border: none;
+            width: 100%; /* Full-width */
+            height: 9px; /* Specified height */
+            border-radius: 100px;
+            background: #BEBEBE; /* Grey background */
+            outline: none; /* Remove outline */
+            cursor: pointer;
+            opacity: 0.75;
+
+            &:hover {
+                opacity: 1;
+            }
+            /* la zone de déplacement */
+            &::-webkit-slider-runnable-track,
+            &::-moz-range-track,
+            &::-ms-track {
+                cursor: pointer;
+            }
+            /* le curseur */
+            &::-webkit-slider-thumb,
+            &::-moz-range-thumb,
+            &::-ms-thumb {
+                -webkit-appearance: none; /* Override default look */
+                appearance: none;
+                width: 24px; /* Set a specific slider handle width */
+                height: 24px; /* Slider handle height */
+                background: red !important; /* Green background */
+                cursor: pointer; /* Cursor on hover */
+            }
+            &::-moz-range-progress {
+                color: red;
+                fill: red;
+                background: red;
+            }
+        }
+        span.timestamp {
+            padding: 8px 16px;
+            font-family: var(--f-heading);
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+        }
+    }
+}

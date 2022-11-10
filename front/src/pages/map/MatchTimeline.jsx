@@ -9,56 +9,47 @@ import MapService from "../../services/MapService";
 import Map from "../../components/map/Map.jsx";
 
 const MatchTimeline = () => {
-  const [matchTimeline, setMatchTimeline] = useState({});
-  const [killInfos, setkillInfos] = useState([]);
-  const params = useParams();
-  const MATCH_SERVICE = new MatchService();
-  const UTILS_SERVICE = new UtilsService();
+    const [matchTimeline, setMatchTimeline] = useState({});
+    const [killInfos, setkillInfos] = useState([]);
+    const params = useParams();
+    const MATCH_SERVICE = new MatchService();
+    const UTILS_SERVICE = new UtilsService();
 
-  let killInfosFormat = [];
-  let totalGameTime = '';
-  useQuery(["match"], async () => {
-    /// Call to API to get timeline of a match
-    await MATCH_SERVICE.getOneTimeline(params.match_id).then((res) => {
-      setMatchTimeline(res["data"][0]["frames"]);
-      // console.log(matchTimeline);
-
-      if (totalGameTime === '') {
-        for (let i = 0; i < matchTimeline.length; i++) {
-          totalGameTime = UTILS_SERVICE.millisToSeconds(matchTimeline[i].timestamp - 1);
-        }
-      }
-      
-      // console.log(totalGameTime);
-      // for (let i = 0; i < matchTimeline.length; i++) {
-      //   for (let j = 0; j < matchTimeline[i].events.length; j++) {
-      //     if (matchTimeline[i].events[j].type === "CHAMPION_KILL") {
-      //       killInfosFormat.push({
-      //         type: matchTimeline[i].events[j].type,
-      //         timestamp: matchTimeline[i].events[j].timestamp,
-      //         killerId: matchTimeline[i].events[j].killerId,
-      //         victimId: matchTimeline[i].events[j].victimId,
-      //         position: matchTimeline[i].events[j].position,
-      //       });
-      //     }
-      //   }
-      // }
+    let killInfosFormat = [];
+    let totalGameTime = '';
     
-      // if(killInfos.length === 0){
-      //   setkillInfos(killInfosFormat);
-      // }
+    useQuery(["match"], async () => {
+        /// Call to API to get timeline of a match
+        const response = await MATCH_SERVICE.getOneTimeline(params.match_id);
+        setMatchTimeline(response.data[0].frames);
+
+        if (totalGameTime === '') {
+            for (let i = 0; i < matchTimeline.length; i++) {
+                totalGameTime = UTILS_SERVICE.millisToSeconds(matchTimeline[i].timestamp - 1);
+            }
+        }
     });
-  });
 
-  useEffect(() => {
-    document.title = "Résumé | Mapol : Map Of Legends";
-  }, []);
+    useEffect(() => {
+        document.title = "Résumé | Mapol : Map Of Legends";
+    }, []);
 
-  return (
-    <div className="page page-timeline">
-      <Map />
-    </div>
-  );
+    return (
+        <div className="page page-timeline">
+            <div className="container page-timeline__grid">
+                <div className="map-box box">
+                    <h2 className="box-title">Résumé du match</h2>
+                    <Map />
+                </div>
+                <div className="events-box box">
+                    <h2 className="box-title">Évènements</h2>
+                </div>
+                <div className="teams-box box">
+                    <h2 className="box-title">Participants</h2>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default MatchTimeline;

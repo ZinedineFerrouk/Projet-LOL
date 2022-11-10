@@ -133,23 +133,6 @@ h6 {
 .icon {
     width: 24px;
 }
-.btn {
-    padding: 16px;
-    outline: none !important;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    transition: var(--a-transition);
-
-    &.btn-icon-only {
-        background-color: var(--c-black);
-        border-radius: 50%;
-
-        &:hover {
-            background-color: var(--c-primary);
-        }
-    }
-}
 .input {
     width: 100%;
     padding: 16px;

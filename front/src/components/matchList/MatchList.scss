@@ -1,0 +1,153 @@
+/* ==================================
+    components/MatchList
+================================== */
+
+.matchs {
+    display: flex;
+    flex-direction: column;
+    
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .match {
+        list-style: none;
+        padding: 32px;
+        transition: var(--a-transition);
+        background-color: var(--c-secondary);
+
+        &:hover {
+            background-color: var(--c-secondary-darker);
+        }
+        .match-info {
+            .gametype {
+                font-family: var(--f-primary);
+                text-transform: none;
+                margin-bottom: 8px;
+            }
+            .duration {
+                margin-bottom: 16px;
+
+                span {
+                    color: var(--c-primary);
+                    font-weight: bold;
+                }
+            }
+        }
+        .teams {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 12px;
+            border-radius: 16px;
+            transform: scale(0.9);
+
+            .team {
+                border-radius: 8px;
+                display: flex;
+                justify-content: space-evenly;
+                flex: 1;
+                color: var(--c-text-alt);
+                width: 100%;
+
+                &.team-winner {
+                    background-color: var(--c-success-lighter);
+                    border: 1px solid var(--c-success-darker);
+                }
+                &.team-loser {
+                    background-color: var(--c-error-lighter);
+                    border: 1px solid var(--c-error-darker);
+                }
+                .player {
+                    padding: 8px 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    justify-content: center;
+
+                    &.this-player {
+                        // background-color: var(--c-primary);
+                        box-shadow: 0 0 0 5px rgba(var(--c-primary-rgb), 1),
+                        0 0 20px 15px rgba(0, 0, 0, 0.25);
+                        outline: 2px solid var(--c-primary-darker);
+                        outline-offset: -4px;
+                    }
+                    .champion-icon {
+                        width: 64px;
+                        height: 64px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        border: 2px solid var(--c-primary);
+                        outline: 1px solid var(--c-primary-darker);
+                        outline-offset: 2px;
+
+                        img {
+                            object-fit: cover;
+                            height: 100%;
+                        }
+                    }
+                    .player-info {
+                        .name {
+                            font-weight: bold;
+                            font-size: 18px;
+                        }
+                        .champion-name {
+                            span {
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+            .separator {
+                position: relative;
+                width: 100%;
+                margin: 16px 0;
+                pointer-events: none;
+
+                img {
+                    margin: 0 auto;
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+
+    &.loading {
+        .champion-icon {
+            position: relative;
+            .img-loader,
+            .img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .matchs {
+
+        .match {
+            padding: 16px;
+
+            .teams {
+                padding: 8px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 480px) {
+    .matchs {
+        
+        .match {
+            
+            .teams {
+                flex-direction: column !important;
+            }
+        }
+    }
+}
