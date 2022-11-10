@@ -4,6 +4,7 @@ import './SearchBar.scss';
 import { Link } from 'react-router-dom';
 import SummonerService from '../../services/SummonerService';
 import PlayersSkeleton from '../skeletons/PlayersSkeleton';
+import Button from '../button/Button';
 
 const SearchBar = (props) => {
 
@@ -45,7 +46,7 @@ const SearchBar = (props) => {
             <div className="region select-container">
                 <select className="input select" name="region" id="region">
                     <option value="">Choix de la région</option>
-                    { 
+                    {
                         props.regions.map((region, index) => {
                             return <option key={ index } value={ region.value }>{ region.name }</option>
                         })
@@ -95,7 +96,7 @@ const SearchBar = (props) => {
                 </ul>
             )}
             
-            {/* <button title="Rechercher" className="btn btn-icon-only"><img className="icon" src={ searchLine } alt="search icon" /></button> */}
+            {/* <Button title="Rechercher" iconOnly><img className="icon" src={ searchLine } alt="search icon" /></Button> */}
         </div>
       )
     }

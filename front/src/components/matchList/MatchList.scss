@@ -1,0 +1,61 @@
+/* ==================================
+    components/MatchList
+================================== */
+
+.matchs {
+    display: flex;
+    flex-direction: column;
+    
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .match {
+        list-style: none;
+        padding: 32px;
+        transition: var(--a-transition);
+        background-color: var(--c-secondary);
+
+        &:hover {
+            background-color: var(--c-secondary-darker);
+        }
+        .match-info {
+            .gametype {
+                font-family: var(--f-primary);
+                text-transform: none;
+                margin-bottom: 8px;
+            }
+            .duration {
+                margin-bottom: 16px;
+
+                span {
+                    color: var(--c-primary);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    &.loading {
+        .champion-icon {
+            position: relative;
+            .img-loader,
+            .img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .matchs {
+
+        .match {
+            padding: 16px;
+        }
+    }
+}

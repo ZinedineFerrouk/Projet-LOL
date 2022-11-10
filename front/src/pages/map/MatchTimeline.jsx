@@ -6,6 +6,8 @@ import "./MatchTimeline.scss";
 import { useQuery } from "react-query";
 import UtilsService from "../../services/Utils";
 import Map from "../../components/map/Map.jsx";
+import EventList from "../../components/eventList/EventList";
+import EventFaker from '../../fakes/Events.fake.json';
 
 const MatchTimeline = () => {
   const [matchTimeline, setMatchTimeline] = useState({});
@@ -36,17 +38,29 @@ const MatchTimeline = () => {
     }
   });
 
-  useEffect(() => {
-    document.title = "Résumé | Mapol : Map Of Legends";
-  }, []);
+    useEffect(() => {
+        setEvents(EventFaker.events);
+        
+        document.title = "Résumé | Mapol : Map Of Legends";
+    }, []);
 
-  return (
-    <div className="page page-timeline">
-      { 
-        isLoaded && <Map killInfos={killInfos} gameDuration={totalGameTime} /> 
-      }
-    </div>
-  );
+    return (
+        <div className="page page-timeline">
+            <div className="container page-timeline__grid">
+                <div className="map-box box">
+                    <h2 className="box-title">Résumé du match</h2>
+                    <Map />
+                </div>
+                <div className="events-box box">
+                    <h2 className="box-title">Évènements</h2>
+                    <EventList events={ events } />
+                </div>
+                <div className="teams-box box">
+                    <h2 className="box-title">Participants</h2>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default MatchTimeline;

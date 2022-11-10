@@ -10,6 +10,7 @@ import {
   background5,
 } from "../../assets/img/background.js";
 import SearchBar from "../../components/searchbar/SearchBar";
+import Button from '../../components/button/Button';
 
 const Home = () => {
   
