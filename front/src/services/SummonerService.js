@@ -14,7 +14,11 @@ export default class SummonerService {
      * @returns
      */
     getOneByName(name) {
-        return axios.get(`${URL}/get-summoner/${name}`);
+        return axios.get(`${URL}/get-summoner/${name}`, {
+            headers: {
+                'Access-Control-Allow-Origin' : '*'
+            }
+          });
     }
 
 }
