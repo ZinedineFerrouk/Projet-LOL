@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import './EventList.scss';
 import UtilsService from "../../services/Utils";
 
-const EventList = (props) => {
+const EventList = ({ events, current }) => {
     const UTILS_SERVICE = new UtilsService();
     const WARDS = {
         "CONTROL_WARD": 'Balise de contrôle',
@@ -20,16 +21,44 @@ const EventList = (props) => {
         "DRAGON": 'Dragon',
         "RIFTHERALD": 'Héraut de la Faille',
     }
+    const SELECTED_TYPES = [
+        'WARD_PLACED',
+        'WARD_KILL',
+        'LEVEL_UP',
+        'SKILL_LEVEL_UP',
+        'CHAMPION_KILL',
+        'BUILDING_KILL',
+        'CHAMPION_SPECIAL_KILL',
+        'ELITE_MONSTER_KILL',
+        'PAUSE_END',
+        'GAME_END'
+    ]
+    const [currentEvents, setCurrentEvents] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        
-    }, []);
-    
+        events.forEach(item => {
+            item.events.forEach(event => {
+                if(event.timestamp <= current) {
+                    if(SELECTED_TYPES.includes(event.type)) {
+                        setCurrentEvents(prev => [event, ...prev]);
+                    }
+                }
+            })
+            setIsLoaded(true);
+        });
+    }, [current]);
 
     const eventSentence = (item) => {
         let sentence = '';
 
         switch (item.type) {
+            case 'PAUSE_END':
+                return sentence = 'Début du match.';
+
+            case 'GAME_END': 
+                return sentence = 'Fin du match.';
+
             case 'SKILL_LEVEL_UP':
                 return sentence = `
                     <span class="event-sentence__actor">${item.participantId}</span> 
@@ -107,17 +136,17 @@ const EventList = (props) => {
 	return <>
         <div className="events-list">
         {
-            props.events.map((event, index) => {
-                // console.log(event);
+            (currentEvents.length > 0) && (isLoaded) ? (
+                currentEvents.map((event, index) => {
 
-                return (
-                    event.type !== 'ITEM_UNDO' &&
-                    <div key={ index } className="event">
-                        <span className="event-time">{ UTILS_SERVICE.millisToMinutesAndSeconds(event.timestamp) }</span>
-                        <p className="event-sentence" dangerouslySetInnerHTML={ {__html: eventSentence(event)} }></p>
-                    </div>
-                );
-            })
+                    return (
+                        <div key={ index } className="event">
+                            <span className="event-time">{ UTILS_SERVICE.millisToMinutesAndSeconds(event.timestamp) }</span>
+                            <p className="event-sentence" dangerouslySetInnerHTML={ {__html: eventSentence(event)} }></p>
+                        </div>
+                    );
+                })
+            ) : 'no data'
         }
         </div>
     </>;

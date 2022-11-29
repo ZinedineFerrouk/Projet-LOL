@@ -6,74 +6,15 @@ import playIcon from '../../assets/img/icons/play-circle-line.svg';
 import stopIcon from '../../assets/img/icons/stop-circle-line.svg';
 import pauseIcon from '../../assets/img/icons/pause-circle-line.svg';
 import Button from "../button/Button";
+import UtilsService from "../../services/Utils";
 
-const Map = () => {
-    const map = useRef(null);
-    const progressbar = document.getElementById("progressbar");
-    const [currentTime, setCurrentTime] = useState(0);
-    const interval = useRef(null);
-    const [timeline, setTimeline] = useState({});
-    const [max, setMax] = useState(0);
+const Map = ({ events, current, toggleMapStatus, stopMap, dragProgressbar, map }) => {
+    const [totalGameTime, setTotalGameTime] = useState(0);
+    const UTILS_SERVICE = new UtilsService;
 
     useEffect(() => {
-        setMax(document.getElementById("progressbar").getAttribute("max"));
+        setTotalGameTime(events.at(-1).timestamp);
     }, []);
-
-    const toggleMapStatus = () => {
-        const BUTTON = document.getElementById('play');
-
-        if(map.current.classList.contains("map-active")) {
-            BUTTON.title = "Lecture"
-            map.current.classList.remove("map-active");
-            updatePlayIcon();
-            clearInterval(interval.current);
-        } else {
-            BUTTON.title = "Pause"
-            map.current.classList.add("map-active");
-            updatePlayIcon();
-            interval.current = setInterval(() => {
-                setCurrentTime((prev) => {
-                    if (prev >= +max) {
-                        map.current.classList.remove("map-active");
-                        clearInterval(interval.current);
-
-                        return prev;
-                    }
-
-                    return prev + 1;
-                });
-            }, 1000);
-        }
-    };
-
-    const stopMap = () => {
-        map.current.classList.remove("map-active");
-        clearInterval(interval.current);
-        setCurrentTime(0);
-        updatePlayIcon();
-    };
-  
-    const updatePlayIcon = () => {
-        const ICON = document.getElementById("play-icon");
-
-        if (!map.current.classList.contains("map-active")) {
-            ICON.src = playIcon;
-        } else {
-            ICON.src = pauseIcon;
-        }
-    };
-
-    //FIXME: Au drag, il ajoute le max à la valeur currentTime
-  const dragProgressbar = (e) => {
-    const PROGRESS = e.target;
-
-    if (map.current.classList.contains("map-active")) {
-        map.current.classList.remove("map-active");
-        clearInterval(interval.current);
-        updatePlayIcon();
-    }
-    setCurrentTime(PROGRESS.value);
-  };
 
   return (
     <div className="map__container">
@@ -106,29 +47,14 @@ const Map = () => {
             className="progressbar"
             id="progressbar"
             min="0"
-            max="10"
-            value={currentTime}
+            max={ totalGameTime }
+            value={ current }
             onChange={ dragProgressbar }
             />
             <span className="timestamp" id="timestamp">
-            {
-            Math.floor(currentTime / 60) +
-                ":" +
-                (currentTime % 60
-                ? currentTime % 60 <= 9
-                    ? "0" + (currentTime % 60)
-                    : currentTime % 60
-                : "00")
-            }
-            { 
-            ' - ' + Math.floor(max / 60) +
-                ":" +
-                (max % 60
-                ? max % 60 <= 9
-                    ? `0${max % 60}`
-                    : `${max % 60}`
-                : "00")
-            }
+                <span className="current">{ UTILS_SERVICE.millisToMinutesAndSeconds(current) }</span>
+                -
+                <span className="total">{  UTILS_SERVICE.millisToMinutesAndSeconds(totalGameTime) }</span>
             </span>
         </div>
     </div>
