@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/api', name: 'api')]
-class ApiController extends AbstractController
+class ApiDataRiotController extends AbstractController
 {
     private $apiService;
     private $em;
@@ -36,8 +36,13 @@ class ApiController extends AbstractController
         // Récupère toutes les infos d'un invocateur par NOM
         $response = $this->apiService->callToApi('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/SPKTRA', array('X-Riot-Token: ' . $this->getParameter('app.api_key')));
         $json = json_decode($response->getContent(), true);
+        if (!array_key_exists('puuid', $json)) {
+            return;
+        }
         $puuid = $json['puuid'];
-
+        if ($this->summonerRepository->findBy(['puuid' => $json['puuid']])) {
+            return;
+        }
         $summoner = new Summoner();
         $summoner->setSummonerId($json['id']);
         $summoner->setPuuid($puuid);
@@ -153,85 +158,5 @@ class ApiController extends AbstractController
         }
 
         return $response;
-    }
-
-    #[Route('/get-summoner/{name}', name: 'get-summoner')]
-    public function getSummonerByName($name)
-    {
-        $summoners = $this->summonerRepository->findByName($name);
-
-        $formatSummoner = [];
-        if ($summoners) {
-            foreach ($summoners as $summoner) {
-                $formatSummoner[] = [
-                    'puuid' => $summoner->getPuuid(),
-                    'name' => $summoner->getName(),
-                    'summoner_level' => $summoner->getSumonnerLevel(),
-                    'summoner_id' => $summoner->getSummonerId(),
-                    'region' => $summoner->getRegion(),
-                    'icon_id' => $summoner->getProfileIconId()
-                ];
-            }
-        }
-
-        return new JsonResponse($formatSummoner);
-    }
-
-    #[Route('/get-matchs/summoner/{name}/{region}', name: 'get-matchs-user')]
-    public function getMatchsUser(String $name, String $region)
-    {
-        $summoner = $this->summonerRepository->findOneBy(['name' => $name, 'region' => $region]);
-        if ($summoner) {
-            $formatMatchs = [];
-            $matchs = $summoner->getMatchs();
-            foreach ($matchs as $match) {
-                $formatMatchs[] = [
-                    "id" => $match->getId(),
-                    "match_id" => $match->getMatchId(),
-                    "general_data" => $match->getGeneralData()
-                ];
-            }
-        }
-        return new JsonResponse($formatMatchs);
-    }
-
-    #[Route('/get-match-timeline/{match_id}', name: 'get-match-timeline')]
-    public function getMatchTimeline($match_id)
-    {
-        $match = $this->matchsRepository->findOneBy(["match_id" => $match_id]);
-
-        if ($match) {
-            $matchTimeline = $match->getData();
-        }
-
-        return new JsonResponse($matchTimeline);
-    }
-
-    #[Route('/get-match-details/{match_id}', name: 'get-match-details')]
-    public function getMatchDetails($match_id)
-    {
-        $match = $this->matchsRepository->findOneBy(["match_id" => $match_id]);
-
-        if ($match) {
-            $matchDetails = $match->getData();
-            $matchGeneralData = $match->getGeneralData();
-
-            $formattedDataMatch = [];
-            for ($i = 0; $i < count($matchGeneralData[0]['champions']); $i++) {
-                $formattedDataMatch['playersInfo'][] = [
-                    'kda' => $matchGeneralData[0]['champions'][$i]['kda'],
-                    'win' => $matchGeneralData[0]['champions'][$i]['win'],
-                    'puuid' => $matchGeneralData[0]['champions'][$i]['puuid'],
-                    'region' => $matchGeneralData[0]['champions'][$i]['region'],
-                    'teamId' => $matchGeneralData[0]['champions'][$i]['teamId'],
-                    'championName' => $matchGeneralData[0]['champions'][$i]['championName'],
-                    'summonerName' => $matchGeneralData[0]['champions'][$i]['summonerName'],
-                    'participantId' => $matchDetails[0]['participants'][$i]['participantId'],
-                ];
-            }
-        }
-        $formattedDataMatch['timeline'] = ['frames' => $matchDetails[0]['frames']];
-
-        return new JsonResponse($formattedDataMatch);
     }
 }
