@@ -76,7 +76,7 @@ const Player = () => {
                         loadingMatches ?
                             <MatchesSkeleton />
                         :
-                            <MatchList matchs={ matchs } />
+                            <MatchList matchs={ matchs } summonerName={ params.summonerName } />
                     }
                 </div>
             </div>

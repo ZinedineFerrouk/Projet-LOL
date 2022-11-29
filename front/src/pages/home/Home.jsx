@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import { Link } from "react-router-dom";
-import logo from "../../assets/img/mapol-logo.svg";
+import logo from "../../assets/img/mapol-logo-white.svg";
 import {
   background1,
-  background2,
   background3,
   background4,
   background5,
 } from "../../assets/img/background.js";
 import SearchBar from "../../components/searchbar/SearchBar";
-import Button from '../../components/button/Button';
 
 const Home = () => {
   
@@ -18,7 +16,6 @@ const Home = () => {
 
   const BACKGROUNDS = [
     background1,
-    background2,
     background3,
     background4,
     background5,
@@ -75,8 +72,8 @@ const Home = () => {
         </div>
         <div className="introduction">
           <p>
-            <b>Mapol</b> est une application web capable d’afficher les
-            informations d’un joueurs. Dont les grades, le niveau, les
+            <span>Mapol</span> est une application web capable d’afficher les
+            informations d’un joueur. Dont les grades, le niveau, les
             statistiques mais aussi la liste des derniers matches joués. Selon
             le matche séléctionné, vous aurez la possibilité grâce à un lecteur
             de visualiser en temps réelle le dérouler du match.

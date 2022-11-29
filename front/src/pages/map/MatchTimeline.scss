@@ -9,7 +9,7 @@
         display: grid;
         grid-template-areas:    
             "map events" 
-            "map teams"
+            "teams teams"
         ;
         grid-template-columns: repeat(2, 1fr);
         gap: 32px;
@@ -26,6 +26,53 @@
         .box {
             h2.box-title {
                 color: #fff;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .page-timeline {
+        .page-timeline__grid {
+            .teams-box {
+                .players-list {
+                    .teams {
+                        flex-direction: row;
+                        gap: 16px;
+
+                        .team {
+                            flex-direction: column;
+                        }
+                        .versus {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .page-timeline {
+        .page-timeline__grid {
+            grid-template-areas: 
+                "map"
+                "events"
+                "teams"
+            ;
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 648px) {
+    .page-timeline {
+        .page-timeline__grid {
+            .teams-box {
+                .teams {
+                    flex-direction: column !important;
+                }
             }
         }
     }

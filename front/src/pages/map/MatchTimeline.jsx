@@ -8,6 +8,7 @@ import UtilsService from "../../services/Utils";
 import Map from "../../components/map/Map.jsx";
 import EventList from "../../components/eventList/EventList";
 import EventFaker from '../../fakes/Events.fake.json';
+import PlayerList from './../../components/playerList/PlayerList';
 
 const MatchTimeline = () => {
   const [matchTimeline, setMatchTimeline] = useState({});
@@ -16,6 +17,7 @@ const MatchTimeline = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [totalGameTime, setTotalGameTime] = useState(0);
   const [events, setEvents] = useState({});
+  const [playersInfo, setPlayersInfo] = useState([]);
   const params = useParams();
   const MATCH_SERVICE = new MatchService();
   const UTILS_SERVICE = new UtilsService();
@@ -30,6 +32,7 @@ const MatchTimeline = () => {
       setIsLoaded(true);
       
       setMatchTimeline(response.data.timeline);
+      setPlayersInfo(response.data.playersInfo);
       
       for (let i = 0; i < matchTimeline.length; i++) {
         setTotalGameTime(
@@ -62,6 +65,9 @@ const MatchTimeline = () => {
                 </div>
                 <div className="teams-box box">
                     <h2 className="box-title">Participants</h2>
+                    {
+                        isLoaded && <PlayerList players={ playersInfo } />
+                    }
                 </div>
             </div>
         </div>
