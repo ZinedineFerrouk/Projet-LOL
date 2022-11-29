@@ -108,7 +108,7 @@ const EventList = (props) => {
         <div className="events-list">
         {
             props.events.map((event, index) => {
-                console.log(event);
+                // console.log(event);
 
                 return (
                     event.type !== 'ITEM_UNDO' &&
