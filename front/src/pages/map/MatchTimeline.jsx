@@ -38,7 +38,6 @@ const MatchTimeline = () => {
 
         if (response) {
         setIsLoaded(true);
-        
         setMatchTimeline(response.data.timeline);
         setEvents(() => {
             setMax(response.data.timeline.frames.at(-1).timestamp);
@@ -92,11 +91,9 @@ const MatchTimeline = () => {
         }
     };
 
-    //FIXME: Au drag, il ajoute le max à la valeur currentTime
     const dragProgressbar = (e) => {
         const PROGRESS = e.target;
 
-        console.log(PROGRESS.value);
         if (map.current.classList.contains("map-active")) {
             map.current.classList.remove("map-active");
             clearInterval(interval.current);
@@ -124,7 +121,7 @@ const MatchTimeline = () => {
                 <div className="events-box box">
                     <h2 className="box-title">Évènements</h2>
                     {
-                        isLoaded && <EventList events={ events } current={ currentTime } />
+                        isLoaded && <EventList events={ events } current={ currentTime } playersInfo={ playersInfo } />
                     }
                 </div>
                 <div className="teams-box box">
