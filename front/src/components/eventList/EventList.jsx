@@ -37,9 +37,10 @@ const EventList = ({ events, current }) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
+        setCurrentEvents([]);
         events.forEach(item => {
             item.events.forEach(event => {
-                if(event.timestamp <= current) {
+                if(+UTILS_SERVICE.millisToSeconds(+event.timestamp).toFixed(2) <= +UTILS_SERVICE.millisToSeconds(+current).toFixed(2)) {
                     if(SELECTED_TYPES.includes(event.type)) {
                         setCurrentEvents(prev => [event, ...prev]);
                     }

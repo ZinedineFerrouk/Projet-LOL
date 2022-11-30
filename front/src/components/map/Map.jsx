@@ -43,13 +43,13 @@ const Map = ({ events, current, toggleMapStatus, stopMap, dragProgressbar, map }
                 </Button>
             </div>
             <input
-            type="range"
-            className="progressbar"
-            id="progressbar"
-            min="0"
-            max={ totalGameTime }
-            value={ current }
-            onChange={ dragProgressbar }
+                type="range"
+                className="progressbar"
+                id="progressbar"
+                min="0"
+                max={ totalGameTime }
+                value={ current }
+                onChange={ dragProgressbar }
             />
             <span className="timestamp" id="timestamp">
                 <span className="current">{ UTILS_SERVICE.millisToMinutesAndSeconds(current) }</span>

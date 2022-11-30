@@ -62,14 +62,14 @@ const MatchTimeline = () => {
             updatePlayIcon();
             interval.current = setInterval(() => {
                 setCurrentTime((prev) => {
-                    if (prev >= +max) {
+                    if (+prev >= +max) {
                         map.current.classList.remove("map-active");
                         clearInterval(interval.current);
 
-                        return prev;
+                        return +prev;
                     }
 
-                    return prev + 1000;
+                    return +prev + 1000;
                 });
             }, 1000);
         }
@@ -96,6 +96,7 @@ const MatchTimeline = () => {
     const dragProgressbar = (e) => {
         const PROGRESS = e.target;
 
+        console.log(PROGRESS.value);
         if (map.current.classList.contains("map-active")) {
             map.current.classList.remove("map-active");
             clearInterval(interval.current);
