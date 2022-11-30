@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import match_map from "../../assets/img/normal.jpg";
+import match_map from "../../assets/img/lol_map.webp";
 import "./Map.scss";
 import playIcon from '../../assets/img/icons/play-circle-line.svg';
 import stopIcon from '../../assets/img/icons/stop-circle-line.svg';
@@ -46,7 +46,6 @@ const Map = ({ events, current, toggleMapStatus, stopMap, dragProgressbar, map }
                     }
                 });
             });
-            console.log(array);
             return array;
         });
     }, [current]);

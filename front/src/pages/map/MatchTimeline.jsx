@@ -16,6 +16,7 @@ import pauseIcon from '../../assets/img/icons/pause-circle-line.svg';
 const MatchTimeline = () => {
     const map = useRef(null);
     const [currentTime, setCurrentTime] = useState(0);
+    const [velocity, setVelocity] = useState(1000);
     const [isLoaded, setIsLoaded] = useState(false);
     const interval = useRef(null);
     const [max, setMax] = useState(0);
@@ -67,7 +68,7 @@ const MatchTimeline = () => {
 
                     return +prev + 1000;
                 });
-            }, 1000);
+            }, velocity);
         }
     };
 
