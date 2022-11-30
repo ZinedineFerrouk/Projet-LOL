@@ -1,10 +1,8 @@
 import React from "react";
 import separator from '../../assets/img/teams-separator.svg';
-import { useParams } from "react-router-dom";
 import './TeamList.scss';
 
 const TeamList = (props) => {
-    const params = useParams();
 
 	return <>
         <div className="teams">
@@ -17,7 +15,7 @@ const TeamList = (props) => {
                                     key={index}
                                     className={
                                         champion.summonerName ===
-                                        params.summonerName
+                                        props.summonerName
                                             ? "player player-winner this-player"
                                             : "player player-winner"
                                     }
@@ -72,7 +70,7 @@ const TeamList = (props) => {
                                     key={index}
                                     className={
                                         champion.summonerName ===
-                                        params.summonerName
+                                        props.summonerName
                                             ? "player player-loser this-player"
                                             : "player player-winner"
                                     }

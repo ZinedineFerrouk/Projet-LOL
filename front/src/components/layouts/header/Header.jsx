@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Header.scss';
-import logo from '../../../assets/img/mapol-logo.svg';
+import logo from '../../../assets/img/mapol-logo-white.svg';
 import arrowLeftLine from '../../../assets/img/icons/arrow-left-line.svg';
 import Button from '../../button/Button';
 

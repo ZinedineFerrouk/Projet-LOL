@@ -26,9 +26,15 @@
         }
         .introduction {
             p {
+                color: var(--c-text-shade);
                 text-align: center;
                 font-size: 16px;
                 font-weight: lighter;
+
+                span {
+                    font-weight: bold;
+                    color: white;
+                }
             }
         }
         .search {

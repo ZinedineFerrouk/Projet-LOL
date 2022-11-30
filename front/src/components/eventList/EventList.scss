@@ -5,14 +5,14 @@
 .events-list {
     max-height: 100%;
     overflow-y: auto;
-    max-height: 368px;
+    max-height: 657px;
 
     .event {
         display: flex;
         align-items: center;
         gap: 16px;
         padding: 16px;
-        border-radius: 4px;
+        border-radius: 8px;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
 

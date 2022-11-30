@@ -4,9 +4,9 @@
     width: 100%;
     top: 0;
     z-index: 99;
-    background-color: rgba(190, 190, 190, 0.85);
-    backdrop-filter: blur(5px);
-    box-shadow: 5px 5px 35px -5px rgb(0 0 0 / 25%);
+    background-image: linear-gradient(45deg, var(--c-secondary), var(--c-secondary-darker));
+    border-bottom: 1px solid #333;
+    // box-shadow: 5px 5px 35px -5px rgb(0 0 0 / 25%);
 
     .back {
         float: left;
