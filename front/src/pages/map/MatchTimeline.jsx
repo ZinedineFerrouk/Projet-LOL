@@ -15,12 +15,10 @@ import pauseIcon from '../../assets/img/icons/pause-circle-line.svg';
 
 const MatchTimeline = () => {
     const map = useRef(null);
-    const [matchTimeline, setMatchTimeline] = useState({});
     const [currentTime, setCurrentTime] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
     const interval = useRef(null);
     const [max, setMax] = useState(0);
-    const [timeline, setTimeline] = useState({});
     const [events, setEvents] = useState([]);
     const [playersInfo, setPlayersInfo] = useState([]);
     const params = useParams();
@@ -38,7 +36,6 @@ const MatchTimeline = () => {
 
         if (response) {
         setIsLoaded(true);
-        setMatchTimeline(response.data.timeline);
         setEvents(() => {
             setMax(response.data.timeline.frames.at(-1).timestamp);
             return response.data.timeline.frames;

@@ -23,7 +23,7 @@ const MatchList = (props) => {
                                         {match.general_data[0].game_type ===
                                         "MATCHED_GAME"
                                             ? "Match classé solo"
-                                            : "undefined"}
+                                            : "Match classique"}
                                     </h3>
                                     <p className="duration">
                                         Le match a durée{" "}

@@ -121,7 +121,7 @@ h6 {
 .box {
     padding: 32px;
     border-radius: 16px;
-    background-color: var(--c-secondary);
+    background-image: linear-gradient(-45deg, var(--c-secondary), var(--c-secondary-darker));
     border: 2px solid var(--c-primary);
     box-shadow: 5px 5px 35px -5px rgba(0, 0, 0, 0.25);
     outline: 1px solid var(--c-primary-darker);

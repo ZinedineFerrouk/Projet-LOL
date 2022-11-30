@@ -14,6 +14,24 @@ const SearchBar = (props) => {
     const [inputText, setInputText] = useState('');
     const [playerIsEmpty, setPlayerIsEmpty] = useState(false);
     const [loadingPlayers, setLoadingPlayers] = useState(false);
+    const fakeRegions = [
+        {
+          name: "Europe Ouest",
+          value: "EUW",
+        },
+        {
+          name: "Europe Nord / Est",
+          value: "EUNE",
+        },
+        {
+          name: "Amérique du Nord",
+          value: "NA",
+        },
+        {
+            name: 'Océanie',
+            value: 'OCE'
+        }
+    ];
 
     const triggerInput = async (e) => {
         setLoadingPlayers(true);
@@ -47,7 +65,7 @@ const SearchBar = (props) => {
                 <select className="input select" name="region" id="region">
                     <option value="">Choix de la région</option>
                     {
-                        props.regions.map((region, index) => {
+                        fakeRegions.map((region, index) => {
                             return <option key={ index } value={ region.value }>{ region.name }</option>
                         })
                     }
@@ -75,7 +93,7 @@ const SearchBar = (props) => {
 
                         players.map((player, index) => {
                             return (
-                                <Link to={ `/joueur/${player.name}` } key={ index }>
+                                <Link to={ `/joueur/${player.name}` } key={ index } onClick={ () => props.history.push(`/joueur/${player.name}`) }>
                                     <li className="result">
                                         <div className="player-icon">
                                             <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.icon_id}.jpg` } alt="player icon" />
