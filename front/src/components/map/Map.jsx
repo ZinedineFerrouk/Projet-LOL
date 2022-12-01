@@ -13,7 +13,7 @@ const Map = ({ events, current, toggleMapStatus, stopMap, dragProgressbar, map }
     const UTILS_SERVICE = new UtilsService;
 
     useEffect(() => {
-        setTotalGameTime(events.at(-1).timestamp);
+        // setTotalGameTime(events.at(-1).timestamp);
     }, []);
 
   return (
