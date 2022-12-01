@@ -47,11 +47,8 @@ const Home = () => {
         </div>
         <div className="introduction">
           <p>
-            <span>Mapol</span> est une application web capable d’afficher les
-            informations d’un joueur. Dont les grades, le niveau, les
-            statistiques mais aussi la liste des derniers matches joués. Selon
-            le matche séléctionné, vous aurez la possibilité grâce à un lecteur
-            de visualiser en temps réelle le dérouler du match.
+            <span>Mapol</span> est une application web dédié aux fans du MOBA League of Legends.
+            L'application permet de rechercher un joueur est d'accéder aux statistiques de ses quatre dernières parties jouées.
           </p>
         </div>
       </div>
