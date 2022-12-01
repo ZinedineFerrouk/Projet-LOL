@@ -57,6 +57,9 @@ php bin/console --env=test doctrine:database:create
 ```
 4 - Insertions des données en BDD appeler la route suivante:
 /api/get-all-data
+
+5 - Lancement des tests unitaires:
+php bin/phpunit
 ```
 ---
 
@@ -72,6 +75,6 @@ npm install
 2 - Lancement du serveur React:
 npm start
 
-3 - Lancement de tous les tests uniataires:
+3 - Lancement de tous les tests unitaires:
 npm test a
 ```
