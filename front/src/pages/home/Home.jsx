@@ -11,8 +11,6 @@ import {
 import SearchBar from "../../components/searchbar/SearchBar";
 
 const Home = () => {
-  
-  const [regions, setRegions] = useState([]);
 
   const BACKGROUNDS = [
     background1,
@@ -21,31 +19,8 @@ const Home = () => {
     background5,
   ];
 
-  const fakeRegions = [
-    {
-      name: "Europe Ouest",
-      value: "EUW",
-    },
-    {
-      name: "Europe Nord / Est",
-      value: "EUNE",
-    },
-    {
-      name: "Amérique du Nord",
-      value: "NA",
-    },
-    {
-        name: 'Océanie',
-        value: 'OCE'
-    }
-  ];
-
   useEffect(() => {
     document.title = 'Mapol : Map Of Legends';
-
-    if(regions.length === 0) {
-      setRegions(fakeRegions);
-    }
   }, []);
 
   let backgroundUrl =
@@ -68,7 +43,7 @@ const Home = () => {
           </Link>
         </div>
         <div className="search">
-          <SearchBar regions={ regions } />
+          <SearchBar />
         </div>
         <div className="introduction">
           <p>

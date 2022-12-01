@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import './EventList.scss';
 import UtilsService from "../../services/Utils";
 
@@ -9,6 +8,7 @@ const EventList = ({ events, current, playersInfo }) => {
         "CONTROL_WARD": 'Balise de contrôle',
         "SIGHT_WARD": 'Balise de vision',    
         "YELLOW_TRINKET": 'Babiole jaune',
+        "BLUE_TRINKET": 'Babiole bleu'
     }
     const BUILDING_TYPE = {
         "TOWER_BUILDING": 'Tour',
@@ -41,7 +41,7 @@ const EventList = ({ events, current, playersInfo }) => {
     const SPECIAL_KILL = {
         "KILL_FIRST_BLOOD": 'Premier sang', // A tué le premier enemie de la partie
         "KILL_MULTI": 'Multi kill', // A effectué un multi kill
-        "KILL_ACE": 'Ace kill' // A tué le dernier joueur en vie de l'équipe adverse 
+        "KILL_ACE": 'Ace' // A tué le dernier joueur en vie de l'équipe adverse 
     }
     const [currentEvents, setCurrentEvents] = useState([]);
     const [playersIdName, setPlayersIdName] = useState([]);
@@ -51,7 +51,6 @@ const EventList = ({ events, current, playersInfo }) => {
         setCurrentEvents([]);
         events.forEach(item => {
             item.events.forEach(event => {
-                console.log(event);
                 if(+UTILS_SERVICE.millisToSeconds(+event.timestamp).toFixed(2) <= +UTILS_SERVICE.millisToSeconds(+current).toFixed(2)) {
                     if(SELECTED_TYPES.includes(event.type)) {
                         setCurrentEvents(prev => [event, ...prev]);
@@ -63,11 +62,12 @@ const EventList = ({ events, current, playersInfo }) => {
 
         setPlayersIdName((prev) => {
             let array = [];
+            array[0] = 'Sbires';
 
             playersInfo.forEach((player) => {
                 array[player.participantId] = player.summonerName
             });
-
+            
             return array;
         });
         
