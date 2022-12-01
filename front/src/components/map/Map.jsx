@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import match_map from "../../assets/img/lol_map.webp";
+import match_map from "../../assets/img/map/map.webp";
 import "./Map.scss";
 import playIcon from '../../assets/img/icons/play-circle-line.svg';
 import stopIcon from '../../assets/img/icons/stop-circle-line.svg';
@@ -14,7 +14,7 @@ import baronIcon from '../../assets/img/map/baron-icon.png';
 import riftIcon from '../../assets/img/map/baron-icon.png';
 import turretIcon from '../../assets/img/map/turret-icon.png';
 
-const Map = ({ events, current, toggleMapStatus, stopMap, dragProgressbar, map }) => {
+const Map = ({ events, current, toggleMapStatus, stopMap, dragProgressbar, map, getVelocity }) => {
     const [totalGameTime, setTotalGameTime] = useState(0);
     const [timeline, setTimeline] = useState([]);
     const MATCH_SERVICE = new MatchService;
@@ -106,6 +106,12 @@ const Map = ({ events, current, toggleMapStatus, stopMap, dragProgressbar, map }
                 <Button id="stop" title="Stop" onClick={ stopMap }>
                     <img src={ stopIcon } alt="stop" />
                 </Button>
+                <select defaultValue={ 1 } onChange={ getVelocity } name="velocity" id="velocity">
+                    <option value={ 1 }>x1</option>
+                    <option value={ 2 }>x2</option>
+                    <option value={ 5 }>x5</option>
+                    <option value={ 10 }>x10</option>
+                </select>
             </div>
             <input
                 type="range"

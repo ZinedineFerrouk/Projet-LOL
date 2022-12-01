@@ -6,13 +6,16 @@
         overflow: hidden;
 
         .point {
-            width: 18px;
-            height: 18px;
+            width: 24px;
+            height: 24px;
             position: absolute;
             border-radius: 50%;
             overflow: hidden;
-            border: 1px solid var(--c-primary);
-            // animation: fadeOut 1s 4s ease-in forwards;
+            border: 1px solid var(--c-error);
+            transform: translate(-50%, 50%);
+            animation: fadeOut 0.275s 6s ease-in forwards,
+                        grow 0.275s ease-in-out backwards;
+            will-change: transform;
 
             img {
                 width: 100%;
@@ -36,6 +39,20 @@
                 visibility: hidden;
             }
         }
+        @keyframes grow {
+            0% {
+                transform: translate(-50%, 50%) scale(1);
+                box-shadow: 0;
+            }
+            50% {
+                transform: translate(-50%, 50%) scale(1.5);
+                box-shadow: 0 0 0 8px rgba(var(--c-primary-rgb), 0.6);
+            }
+            100% {
+                transform: translate(-50%, 50%) scale(1);
+                box-shadow: 0;
+            }
+        }
         img {
             width: 100%;
             object-fit: cover;
@@ -50,6 +67,23 @@
         gap: 8px;
         border-radius: 0 0 16px 16px;
 
+        select#velocity {
+            outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            cursor: pointer;
+
+            border-radius: 100px;
+            padding: 4px 16px;
+            background-color: var(--c-secondary);
+            color: #d1d1d1;
+            font-size: 14px;
+            font-weight: lighter;
+            transition: var(--a-transition);
+
+            option {
+            }
+        }
         .buttons {
             padding: 8px 16px;
             display: flex;
@@ -109,8 +143,9 @@
             font-size: 12px;
             font-weight: bold;
             line-height: 1;
-            width: 110px;
             text-align: right;
+            display: flex;
+            gap: 8px;
         }
     }
 }

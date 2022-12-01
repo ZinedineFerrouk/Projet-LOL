@@ -100,6 +100,19 @@ const MatchTimeline = () => {
         setCurrentTime(PROGRESS.value);
     };
 
+    const getVelocity = (e) => {
+        const BUTTON = document.getElementById('play');
+        let value = e.target.value;
+
+        // Pause the timeline
+        BUTTON.title = "Lecture"
+        map.current.classList.remove("map-active");
+        updatePlayIcon();
+        clearInterval(interval.current);
+
+        setVelocity(1000 / value);
+    };
+
     return (
         <div className="page page-timeline">
             <div className="container page-timeline__grid">
@@ -113,20 +126,17 @@ const MatchTimeline = () => {
                             events={ events } 
                             map={ map }
                             current={ currentTime }
+                            getVelocity={ getVelocity }
                         />
                     }
                 </div>
                 <div className="events-box box">
                     <h2 className="box-title">Évènements</h2>
-                    {
-                        isLoaded && <EventList events={ events } current={ currentTime } playersInfo={ playersInfo } />
-                    }
+                    <EventList isLoaded={isLoaded} events={ events } current={ currentTime } playersInfo={ playersInfo } />
                 </div>
                 <div className="teams-box box">
                     <h2 className="box-title">Participants</h2>
-                    {
-                        isLoaded && <PlayerList players={ playersInfo } />
-                    }
+                    <PlayerList players={ playersInfo } isLoaded={ isLoaded } />
                 </div>
             </div>
         </div>

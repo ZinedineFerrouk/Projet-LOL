@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './EventList.scss';
 import UtilsService from "../../services/Utils";
+import EventsSkeleton from './../skeletons/EventsSkeleton';
 
-const EventList = ({ events, current, playersInfo }) => {
+const EventList = ({ events, current, playersInfo, isLoaded }) => {
     const UTILS_SERVICE = new UtilsService();
     const WARDS = {
         "CONTROL_WARD": 'Balise de contrôle',
@@ -45,7 +46,6 @@ const EventList = ({ events, current, playersInfo }) => {
     }
     const [currentEvents, setCurrentEvents] = useState([]);
     const [playersIdName, setPlayersIdName] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         setCurrentEvents([]);
@@ -57,7 +57,6 @@ const EventList = ({ events, current, playersInfo }) => {
                     }
                 }
             })
-            setIsLoaded(true);
         });
 
         setPlayersIdName((prev) => {
@@ -71,7 +70,7 @@ const EventList = ({ events, current, playersInfo }) => {
             return array;
         });
         
-    }, [current]);
+    }, [current, events]);
 
     const eventSentence = (item) => {
         let sentence = '';
@@ -175,17 +174,23 @@ const EventList = ({ events, current, playersInfo }) => {
 	return <>
         <div className="events-list">
         {
-            (currentEvents.length > 0) && (isLoaded) ? (
-                currentEvents.map((event, index) => {
+            isLoaded ? (
+                (currentEvents.length > 0) && (isLoaded) ? (
+                    currentEvents.map((event, index) => {
+    
+                        return (
+                            <div key={ index } className="event">
+                                <span className="event-time">{ UTILS_SERVICE.millisToMinutesAndSeconds(event.timestamp) }</span>
+                                <p className="event-sentence" dangerouslySetInnerHTML={ {__html: eventSentence(event)} }></p>
+                            </div>
+                        );
+                    })
+                ) : 'Aucune donnée'
 
-                    return (
-                        <div key={ index } className="event">
-                            <span className="event-time">{ UTILS_SERVICE.millisToMinutesAndSeconds(event.timestamp) }</span>
-                            <p className="event-sentence" dangerouslySetInnerHTML={ {__html: eventSentence(event)} }></p>
-                        </div>
-                    );
-                })
-            ) : 'no data'
+            )
+            : (
+                <EventsSkeleton />
+            )
         }
         </div>
     </>;

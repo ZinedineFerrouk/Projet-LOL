@@ -8,8 +8,9 @@ import PlayerSkeleton from "../../components/skeletons/PlayerSkeleton";
 import MatchesSkeleton from "../../components/skeletons/MatchesSkeleton";
 import { PlayerDetails } from "../../components/playerDetails/PlayerDetails";
 import MatchList from "../../components/matchList/MatchList";
+import { useNavigate } from 'react-router-dom';
 
-const Player = () => {
+const Player = (props) => {
     const SUMMONER_SERVICE = new SummonerService(); 
     const MATCH_SERVICE = new MatchService();
     const params = useParams();
@@ -17,6 +18,7 @@ const Player = () => {
     const [loadingMatches, setLoadingMatches] = useState(true);
     const [player, setPlayer] = useState({});
     const [matchs, setMatchs] = useState([]);
+    const navigate = useNavigate();
     
     
     useEffect(() => {
@@ -38,10 +40,12 @@ const Player = () => {
     // Get matchs data
     useQuery(["matchs"], async () => {
         const response = await MATCH_SERVICE.getAllBySummoner(params.summonerName, 'EUW');
-
+        setLoadingMatches(false);
+        
         if (response.data.length > 0) {
-            setLoadingMatches(false);
             setMatchs(response.data);
+        } else {
+            navigate('/');
         }
     })
 
