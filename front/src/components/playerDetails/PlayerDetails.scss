@@ -1,0 +1,62 @@
+/* ==================================
+    components/PlayerDetails
+================================== */
+
+.player-details {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    .avatar {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--c-primary);
+        outline: 1px solid var(--c-primary-darker);
+        outline-offset: 4px;
+
+        img {
+            object-fit: cover;
+            height: 100%;
+        }
+    }
+    .info {
+        .name {
+            font-family: var(--f-primary);
+            text-transform: none;
+            margin-bottom: 8px;
+        }
+        .tag {
+            font-size: 13px;
+        }
+    }
+
+    &.loading {
+        .avatar {
+            position: relative;
+            width: 146px;
+
+            .react-loading-skeleton.img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .info {
+            width: 100%;
+
+            .tags {
+                display: flex;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .player-details {
+        flex-direction: column;
+    }
+}

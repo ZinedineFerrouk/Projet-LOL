@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import { Link } from "react-router-dom";
-import logo from "../../assets/img/mapol-logo.svg";
+import logo from "../../assets/img/mapol-logo-white.svg";
 import {
   background1,
-  background2,
   background3,
   background4,
   background5,
@@ -12,40 +11,16 @@ import {
 import SearchBar from "../../components/searchbar/SearchBar";
 
 const Home = () => {
-  
-  const [regions, setRegions] = useState([]);
 
   const BACKGROUNDS = [
     background1,
-    background2,
     background3,
     background4,
     background5,
   ];
 
-  const fakeRegions = [
-    {
-      name: "Europe Ouest",
-      value: "EUW",
-    },
-    {
-      name: "Europe Nord / Est",
-      value: "EUNE",
-    },
-    {
-      name: "Amérique du Nord",
-      value: "NA",
-    },
-    {
-        name: 'Océanie',
-        value: 'OCE'
-    }
-  ];
-
   useEffect(() => {
-    if(regions.length === 0) {
-      setRegions(fakeRegions);
-    }
+    document.title = 'Mapol : Map Of Legends';
   }, []);
 
   let backgroundUrl =
@@ -68,15 +43,12 @@ const Home = () => {
           </Link>
         </div>
         <div className="search">
-          <SearchBar regions={ regions } />
+          <SearchBar />
         </div>
         <div className="introduction">
           <p>
-            <b>Mapol</b> est une application web capable d’afficher les
-            informations d’un joueurs. Dont les grades, le niveau, les
-            statistiques mais aussi la liste des derniers matches joués. Selon
-            le matche séléctionné, vous aurez la possibilité grâce à un lecteur
-            de visualiser en temps réelle le dérouler du match.
+            <span>Mapol</span> est une application web dédié aux fans du MOBA League of Legends.
+            L'application permet de rechercher un joueur est d'accéder aux statistiques de ses quatre dernières parties jouées.
           </p>
         </div>
       </div>

@@ -1,5 +1,79 @@
 .page-timeline {
-    .container{
-        
+    background-image: linear-gradient(45deg, var(--c-secondary), var(--c-secondary-darker));
+    background-position: center center;
+    background-size: 100% 100%;
+    padding: 96px 0;
+    padding-top: calc(96px + 80px);
+    
+    .page-timeline__grid {
+        display: grid;
+        grid-template-areas:    
+            "map events" 
+            "teams teams"
+        ;
+        grid-template-columns: 1fr 40%;
+        gap: 32px;
+
+        .map-box {
+            grid-area: map;
+        }
+        .events-box {
+            grid-area: events;
+        }
+        .teams-box {
+            grid-area: teams;
+        }
+        .box {
+            h2.box-title {
+                color: #fff;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .page-timeline {
+        .page-timeline__grid {
+            .teams-box {
+                .players-list {
+                    .teams {
+                        flex-direction: row;
+                        gap: 16px;
+
+                        .team {
+                            flex-direction: column;
+                        }
+                        .versus {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .page-timeline {
+        .page-timeline__grid {
+            grid-template-areas: 
+                "map"
+                "events"
+                "teams"
+            ;
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 648px) {
+    .page-timeline {
+        .page-timeline__grid {
+            .teams-box {
+                .teams {
+                    flex-direction: column !important;
+                }
+            }
+        }
     }
 }

@@ -1,46 +1,71 @@
 import React, { useState } from 'react';
 import './SearchBar.scss';
-import searchLine from '../../assets/img/icons/search-line.svg';
+// import searchLine from '../../assets/img/icons/search-line.svg';
 import { Link } from 'react-router-dom';
-import { getSummonerByName } from "../../Service/MatchService";
+import SummonerService from '../../services/SummonerService';
+import PlayersSkeleton from '../skeletons/PlayersSkeleton';
+import Button from '../button/Button';
 
 const SearchBar = (props) => {
 
+    const SUMMONER_SERVICE = new SummonerService();
     const [hideResults, setHideResults] = useState(true);
     const [players, setPlayers] = useState([]);
     const [inputText, setInputText] = useState('');
     const [playerIsEmpty, setPlayerIsEmpty] = useState(false);
+    const [loadingPlayers, setLoadingPlayers] = useState(false);
+    const fakeRegions = [
+        {
+          name: "Europe Ouest",
+          value: "EUW",
+        },
+        {
+          name: "Europe Nord / Est",
+          value: "EUNE",
+        },
+        {
+          name: "Amérique du Nord",
+          value: "NA",
+        },
+        {
+            name: 'Océanie',
+            value: 'OCE'
+        }
+    ];
 
-    const triggerInput = (e) => {
+    const triggerInput = async (e) => {
+        setLoadingPlayers(true);
+
         if(e.target.value.length >= 3) {
             // Get input value and show results
             setInputText(e.target.value);
-            setHideResults(false);
             
             // call api
-            getSummonerByName(e.target.value).then((res) => {
+            await SUMMONER_SERVICE.getOneByName(e.target.value).then((res) => {
+                setHideResults(false);
+                
                 if (res.data.length > 0) {
-                    setPlayers(res.data)
+                    setLoadingPlayers(false);
+                    setPlayers(res.data);
                     setPlayerIsEmpty(false)
                 } else {
+                    setLoadingPlayers(false);
                     setPlayerIsEmpty(true);
                 }
             });
 
-            // if no response
         } else {
             setHideResults(true);
         }
     }
-    console.log(players);
 
     return (
         <div className="searchbar">
             <div className="region select-container">
                 <select className="input select" name="region" id="region">
                     <option value="">Choix de la région</option>
-                    { 
-                        props.regions.map((region, index) => {
+                    {
+                        fakeRegions.map((region, index) => {
                             return <option key={ index } value={ region.value }>{ region.name }</option>
                         })
                     }
@@ -60,26 +85,36 @@ const SearchBar = (props) => {
             ) : (
                 <ul className="results" aria-hidden={ hideResults }>
                 {
-                    players.map((player, index) => {
-                        return <Link to="/" key={ index }>
-                            <li className="result">
-                                <div className="player-icon">
-                                    <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.icon_id}.jpg` } alt="player icon" />
-                                </div>
-                                <div className="player-content">
-                                    <span className="tag tag-info region">{ player.region }</span>
-                                    <p className="name">{ player.name }</p>
-                                    <span className="separator">•</span>
-                                    <p className="level">Niveau { player.summoner_level }</p>
-                                </div>
-                            </li>
-                        </Link>
-                    })
+                    loadingPlayers ? (
+
+                        <PlayersSkeleton />
+
+                    ) : (
+
+                        players.map((player, index) => {
+                            return (
+                                <Link to={ `/joueur/${player.name}` } key={ index } onClick={ () => props.history.push(`/joueur/${player.name}`) }>
+                                    <li className="result">
+                                        <div className="player-icon">
+                                            <img src={ `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${player.icon_id}.jpg` } alt="player icon" />
+                                        </div>
+                                        <div className="player-content">
+                                            <span className="tag tag-info region">{ player.region }</span>
+                                            <p className="name">{ player.name }</p>
+                                            <span className="separator">•</span>
+                                            <p className="level">Niveau { player.summoner_level }</p>
+                                        </div>
+                                    </li>
+                                </Link>
+                            )
+                        })
+
+                    )
                 }
                 </ul>
             )}
             
-            <button title="Rechercher" className="btn btn-icon-only"><img className="icon" src={ searchLine } alt="search icon" /></button>
+            {/* <Button title="Rechercher" iconOnly><img className="icon" src={ searchLine } alt="search icon" /></Button> */}
         </div>
       )
     }

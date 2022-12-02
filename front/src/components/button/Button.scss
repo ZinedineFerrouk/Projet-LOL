@@ -1,0 +1,80 @@
+/* ==================================
+    components/Button
+================================== */
+
+.btn {
+    /* reset */
+    padding: 12px 16px;
+    outline: none !important;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    /* code */
+    border-radius: 0.75rem;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.65px;
+    transition: var(--a-transition);
+
+    i {
+        margin-right: 8px;
+    }
+    &-primary {
+        background-color: var(--c-primary);
+        color: #000;
+
+        &:hover {
+            background-color: var(--c-primary-darker);
+        }
+    }
+    &-secondary {
+        background-color: var(--c-secondary);
+        color: var(--c-text);
+
+        &:hover {
+            background-color: var(--c-secondary-darker);
+            color: var(--c-text);
+        }
+    }
+    &-info {
+        background-color: var(--c-info);
+        color: var(--c-text);
+
+        &:hover {
+            background-color: var(--c-info-darker);
+            color: var(--c-text);
+        }
+    }
+    &-error {
+        background-color: var(--c-error);
+        color: var(--c-text);
+
+        &:hover {
+            background-color: var(--c-error-darker);
+            color: var(--c-text);
+        }
+    }
+    &-success {
+        background-color: var(--c-success);
+        color: var(--c-text);
+
+        &:hover {
+            background-color: var(--c-success-darker);
+            color: var(--c-text);
+        }
+    }
+    &-icon-only {
+        background-color: var(--c-black);
+        color: #fff;
+        border-radius: 50%;
+        border: 1px solid #333;
+
+        &:hover {
+            background-color: var(--c-primary);
+        }
+        i {
+            margin: 0 !important;
+        }
+    }
+}

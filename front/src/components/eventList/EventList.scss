@@ -1,0 +1,79 @@
+/* ==================================
+    components/EventList
+================================== */
+
+.events-list {
+    max-height: 100%;
+    overflow-y: auto;
+    max-height: 657px;
+
+    .event {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:nth-child(odd) {
+            background-color: #0A0D10;
+        }
+        .event-time {
+            color: var(--c-text-shade);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .event-sentence {
+            color: var(--c-text);
+            font-style: italic;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            word-break: break-all;
+            
+            span {
+                /* Variables */
+                --c-actor: #fff;
+                --c-skill: #FEBE8C;
+                --c-victime: #FF6464;
+                --c-level: #FFD384;
+                --c-item: #8EC3B0;
+                --c-ward: #8D72E1;
+                --c-monster: #FF8FB1;
+
+                font-weight: bold;
+                font-style: normal;
+
+                &.event-sentence__actor {
+                    color: var(--c-actor);
+                }
+                &.event-sentence__skill {
+                    color: var(--c-skill);
+                }
+                &.event-sentence__victime {
+                    color: var(--c-victime);
+                }
+                &.event-sentence__level {
+                    color: var(--c-level);
+                }
+                &.event-sentence__item {
+                    color: var(--c-item);
+                }
+                &.event-sentence__ward {
+                    color: var(--c-ward);
+                }
+                &.event-sentence__monster {
+                    color: var(--c-monster);
+                }
+            }
+            img {
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                border: 1px solid var(--c-primary);
+            }
+        }
+    }
+}

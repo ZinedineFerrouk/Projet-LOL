@@ -1,0 +1,44 @@
+.layout-header {
+    padding: 16px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    background-image: linear-gradient(45deg, var(--c-secondary), var(--c-secondary-darker));
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // box-shadow: 5px 5px 35px -5px rgb(0 0 0 / 25%);
+
+    button.btn {
+        padding: 12px;
+    }
+    .logo {
+        width: 150px;
+        margin: 0 auto;
+    }
+    .searchbox {
+        padding: 32px;
+        position: absolute;
+        width: 100%;
+        height: max-content;
+        background-color: var(--c-secondary-darker);
+        bottom: 0;
+        left: 0;
+        transform: translate(0, calc(100% + 1px)) scaleY(0);
+        transform-origin: top;
+        border-bottom: 1px solid #333;
+        z-index: 1;
+        transition: var(--a-transition);
+
+        &.expanded {
+            transform: translate(0, calc(100% + 1px)) scaleY(1);
+        }
+
+        .searchbar {
+            width: 512px;
+            margin: 0 auto;
+        }
+    }
+}
